@@ -1,0 +1,125 @@
+.wrapper {
+    width: 100%;
+    > .container {
+        background: #fff;
+        border-radius: 13px;
+        padding: 24px;
+        max-height: 500px;
+        > .tgLinkContainer {
+            text-align: center;
+            padding-top: 15px;
+    
+            > a {
+                color: #3463F8;
+                font-weight: 600;
+                text-decoration: none;
+    
+                &:hover {
+                    text-decoration: underline;
+                }
+    
+                > img {
+                    margin-bottom: -4px;
+                }
+            }
+        }
+    }
+    .underLink{
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        font-size: 25px;
+        color: #3463f8;
+        padding-top: 25px;
+        transition: all 0.4s;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+.wrapperCheckAmount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    .priceChangeText{
+        margin: 25px 0 20px 0;
+        p {
+            font-style: normal;
+            font-size: 18px; 
+            text-align: center;
+        }
+    }
+    .buttonBlock {
+        justify-content: space-between;
+        display: flex;
+        width: 100%;
+    }    
+}
+.wrapperStatusCashin {
+    display: flex;
+    flex-direction: column;
+    .headerStatus {
+        margin-bottom: 27px;
+        h2 {
+            font-size: 24px;
+            line-height: 29px;
+            margin-bottom: 11px;
+            span {
+                color: #3463F8;
+                font-size: 24px;
+                line-height: 29px;
+            }
+            img {
+                top: 5px;
+                left: 5px;
+                position: relative;
+            }
+        }
+        span {
+            font-size: 16px;
+            line-height: 19px;
+            color: #898989;
+        }
+    }
+    .mainStatus {
+        p {
+            font-size: 12px;
+            line-height: 15px;
+            color: #898989;
+            span {
+                font-size: 12px;
+                line-height: 15px;
+                color: #000000;
+            }
+            &:not(:last-child) {
+                margin-bottom: 9px;
+            }
+        }
+    }
+    .footerStatus {
+        > .tgLinkContainer {
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            :not(:last-child) {
+                margin-bottom: 11px;
+            }
+            > a {
+                color: #3463F8;
+                font-size: 16px;
+                line-height: 19px;
+                text-decoration: none;    
+                &:hover {
+                    text-decoration: underline;
+                }    
+                > img {
+                    margin-bottom: -4px;
+                }
+            }
+        }
+    }
+}

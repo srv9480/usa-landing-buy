@@ -1,0 +1,56 @@
+.Stepper
+    display: flex
+    justify-content: space-between
+    max-width: 100%
+    .stepWrapper
+        display: flex
+        &:not(:last-child)
+            flex: 1
+        .stepBlock
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: 40px
+            span
+                color: rgba(0, 0, 0, 0.6)
+                font-size: 14px
+                line-height: 20px
+                margin-bottom: 4px        
+            .circleWrapper
+                border-radius: 13px
+                font-size: 10px !important
+                width: fit-content
+                position: relative
+                background-color: #D4D4D4
+            .circle
+                width: 20px
+                height: 20px
+                color: white
+                display: flex
+                justify-content: center
+                align-items: center
+                font-size: 14px
+        .line
+            height: 2px
+            width: 100%
+            background-color: #D4D4D4
+            margin-top: 33px
+    .selected
+        .stepBlock
+            span
+                color: #3463F8
+            .circleWrapper
+                background-color: #3463F8
+        .line
+            background-color: #3463F8
+
+@media(max-width: 500px)
+    .Stepper
+        .stepWrapper
+            .stepBlock
+                span
+                    font-size: 11px
+
+    
+    
+    

@@ -1,0 +1,31 @@
+.paymentInput
+    display: flex
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button
+        -webkit-appearance: none
+        margin: 0
+    input
+        border-radius: 13px 0 0 13px !important
+    > span
+        position: absolute
+        font-size: 12px
+        line-height: 14px
+    .info
+        margin-top: 45px
+
+
+.phone
+    display: flex
+    width: 100%
+    .dropMenuStyle
+        border-radius: 13px 0 0 13px
+    div > input
+        border-radius: 0 13px 13px 0
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+            -webkit-appearance: none
+            margin: 0
+            
+
+@media (max-width: 500px)
+    .paymentInput
+        width: 100%

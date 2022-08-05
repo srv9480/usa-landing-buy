@@ -1,0 +1,91 @@
+.button
+    border: 0
+    font-family: Gilroy
+    font-weight: bold
+    font-size: 24px
+    outline: 0
+    &:hover
+        background: rgba(#3463F8, 0.9)
+        cursor: pointer
+    &:disabled
+        background: rgba(#E5E5E5, 0.6)
+        &:hover
+            cursor: default
+    &.text
+        background-color: #fff
+        color: #3463F8
+        font-weight: 500
+        font-size: 16px
+        line-height: 19px
+    &.filled
+        background: #3463F8
+        color: #fff
+        border-radius: 13px
+        padding: 10px 20px
+        font-size: 16px
+        line-height: 20px
+        font-weight: 700
+        min-width: 208px
+        &:disabled
+            background: linear-gradient(0deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)), #3463F8
+            &:hover
+                background: linear-gradient(0deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)), #3463F8;
+                cursor: default
+        &:active
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #3463F8
+        &:hover
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), #3463F8;
+            cursor: pointer
+
+    
+
+.inputBox
+    position: relative
+    width: 100%
+    &:last-child
+        justify-content: end
+    input
+        width: 100%
+        padding: 11px
+        border-radius: 13px
+        outline: none
+        background: #F8F8F8
+        border: 1px solid #DADCE0
+        height: 40px        
+        &:focus
+            border: 2px solid #3463F8
+            background-color: rgba(52, 99, 248, 0.1)
+        &:valid
+            color: #000000
+    label
+        position: absolute
+        left: 0
+        padding: 10px 0 11px 12px
+        pointer-events: none
+        font-size: 16px
+        line-height: 19px
+        color: #D2D2D2
+        white-space: nowrap
+        text-overflow: ellipsis
+        transition: 0.3s
+
+    input:focus + label
+        color: #3463F8 !important
+        transform: translateX(-10px) translateY(-34px)
+        font-size: 12px
+    input:valid + label
+        color: rgba(0, 0, 0, 0.6)
+        transform: translateX(-10px) translateY(-34px)
+        font-size: 12px
+    input:valid
+    &.active
+        label
+            color: rgba(0, 0, 0, 0.6)
+            transform: translateX(-10px) translateY(-34px)
+            font-size: 12px
+    &.error
+        input + label
+            color: red !important
+        input
+            border: 2px solid red !important
+            background: rgba(255, 68, 68, 0.08)

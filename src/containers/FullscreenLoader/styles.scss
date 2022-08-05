@@ -1,0 +1,21 @@
+.wrapper {
+    height: 100%;
+    > div {
+        // flexbox
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: flex-start;
+        align-items: center;
+        > * {
+            flex: 0 1 auto;
+        }
+
+        height: inherit;
+    }
+
+    span {
+        color: #ccc;
+    }
+}

@@ -1,0 +1,78 @@
+@import "../assets/fonts/stylesheet.css";
+
+html,
+body,
+body>#root {
+  min-height: 100%;
+}
+
+body {
+  background: #F6F6F6;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 92px;
+  line-height: 100px;
+  font-style: normal;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 74px;
+  color: #3463F8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Gilroy;
+}
+
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1440px;
+}
+
+@media(max-width: 575px) {
+  .wrapper {
+    margin: 0;
+    align-items: stretch;
+  }
+}
+
+@media(min-width: 576px) AND (max-width: 767px) {
+  .wrapper {
+    width: 95%;
+  }
+}
+
+@media(min-width: 768px) AND (max-width: 991px) {
+  .wrapper {
+    width: 95%;
+  }
+}
+
+@media(min-width: 992px) AND (max-width: 1199px) {
+  .wrapper {
+    width: 95%;
+  }
+}
+
+@media(min-width: 1200px) AND (max-width: 1899px) {
+  .wrapper {
+    width: 75%;
+  }
+}
+
+@media(min-width: 1900px) {
+  .wrapper {
+    width: 75%;
+  }
+}

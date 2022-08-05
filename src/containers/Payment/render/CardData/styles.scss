@@ -1,0 +1,87 @@
+.cardData {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 24px;
+    margin: 98px 0 51px;
+    border-radius: 13px;
+    box-shadow: 3px 3px 11px -1px rgba(147, 147, 147, 0.25);
+    .cardData__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        span {
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 29px;
+        }
+        .cardData__logoGroup {
+            display: flex;
+            align-items: center;
+            .pci {
+                width: 34px;
+            }
+            .visa {
+                height: 18px;
+            }
+            .mastercard {
+                height: 18px;
+            }
+
+            :nth-child(2) {
+                margin: 0 7px;
+            }
+        }
+    }
+    .wrapper__checkbox {
+        margin-top: 25px;
+        display: grid;
+        gap: 5px;
+    }
+    .cardData__buttonBlock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+}
+.wrapper__Input {
+    .rowTop__Input {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        > :first-child {
+            flex: 3;
+            margin-right: 16px;
+        }
+        > :last-child {
+            flex: 1
+        }
+    }
+    .rowBottom__Input {
+        display: flex;
+        justify-content: space-between;
+        > :first-child {
+            flex: 4;
+            margin-right: 16px;
+        }
+        > :last-child {
+            flex: 1;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .cardData {
+        padding: 0;
+        margin: 24px auto 0;
+        box-shadow: none;
+        .cardData__header {
+            flex-direction: column;
+            :last-child {
+                align-items: end;
+            }
+        }
+    }
+}
+
