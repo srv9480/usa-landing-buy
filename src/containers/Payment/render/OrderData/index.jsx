@@ -162,8 +162,8 @@ const OrderData = (props) => {
         const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
         if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
         else {
-            setErrorWallet(true)
-            setDisabledWallet(false)
+            setErrorWallet(false)
+            setDisabledWallet(true)
         }
     }
 
@@ -279,8 +279,8 @@ const OrderData = (props) => {
             />
             
             <div className={styles.orderData__buttonBlock}>
-                <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'}/>
-                <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={disableButton} className={'button'} title={'Continue'}/>
+                <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} />
+                <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={disableButton} className={'button'} title={'Continue'} />
             </div>
             <MessageBox text = {error} clearMessage = {() => setError(null)}/>
         </div>

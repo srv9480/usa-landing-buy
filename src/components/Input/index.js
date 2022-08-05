@@ -67,27 +67,29 @@ class Input extends Expansion {
     }
 
     onPaste(event) {
-        const value = event.target.value;
-        const onPaste = this.props.onPaste;
+        const { value } = event.target;
+        const { onPaste } = this.props;
         if(typeof onPaste === 'function') {
             onPaste(value);
         }
     }
 
     onFocus() {
-        const onFocus = this.props.onFocus;
+        const { onFocus } = this.props;
         if(typeof onFocus === 'function') {
             onFocus(...arguments);
         }
     }
 
     onBlur() {
-        const onBlur = this.props.onBlur;
+        const { onBlur } = this.props;
         if(typeof onBlur === 'function') {
             const value = onBlur(...arguments);
             if(value) {
-                this.setState({value: value});
+                this.setState({value});
             }
+        } else {
+            null;
         }
     }
 
@@ -101,7 +103,7 @@ class Input extends Expansion {
 
     render() {
         return (
-            <div className={`${styles.wrapper} ${this.props.className || ''} ` + (this.props.error ? styles.error : '') }>
+            <div className={`${styles.wrapper} ${this.props.className || ''} ${this.props.error ? styles.error : ''}` }>
                 <input
                     ref={this.refInput.bind(this)}
                     type={this.props.type || 'text'}

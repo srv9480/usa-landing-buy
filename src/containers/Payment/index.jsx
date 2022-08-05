@@ -35,7 +35,7 @@ function renderForm(step, setStep) {
         case 1: return (
             <>
                 
-                {/* <Stepper step={step}/> */}
+              
                 <OrderData setStep = {(step) => setStep(step)} />
 
             </>
@@ -43,13 +43,13 @@ function renderForm(step, setStep) {
         // case 1: return <OrderData setStep = {(step) => setStep(step)} />;
         case 2: return (
             <>
-                {/* <Stepper step={step}/> */}
+               
                 <ContactData setStep = {(step) => setStep(step)}/>
             </>            
         )
         case 3: return (
             <>
-                {/* <Stepper step={step}/> */}
+               
                 <CardData setStep = {(step) => setStep(step)} />
                 <p className={styles.PaymentContainer__fees}>
                     All fees included 

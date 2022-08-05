@@ -1,4 +1,3 @@
-'React Expansion Component';
 
 import React, {Component} from "react";
 
