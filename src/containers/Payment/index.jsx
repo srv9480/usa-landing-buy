@@ -13,7 +13,7 @@ import requests from "@requests/request";
 import OrderData from "@containers/Payment/render/OrderData";
 import ContactData from "@containers/Payment/render/ContactData";
 import CardData from "@containers/Payment/render/CardData";
-import Stepper from '@components/Stepper'
+//import Stepper from '@components/Stepper'
 
 export function PaymentContainer(props) {
     const [step, setStep] = useState(1)
@@ -34,24 +34,22 @@ function renderForm(step, setStep) {
     switch(step) {
         case 1: return (
             <>
-                <h1>Buy crypto with credit card</h1>
-                <Stepper step={step}/>
+                
+                {/* <Stepper step={step}/> */}
                 <OrderData setStep = {(step) => setStep(step)} />
-                <p className={styles.PaymentContainer__warning}>
-                    It is strongly prohibited to make purchases of cryptocurrency on accounts of Forex, Gambling, Pharmacy, Steroid websites, Antivirus etc. All such transactions will be blocked and the fine of EUR 5 000 will be applied to the owner of the banking card. The fine of EUR 50 000 will be applied to the website that forwards such buyers to Indacoin.
-                </p>
+
             </>
         )
         // case 1: return <OrderData setStep = {(step) => setStep(step)} />;
         case 2: return (
             <>
-                <Stepper step={step}/>
+                {/* <Stepper step={step}/> */}
                 <ContactData setStep = {(step) => setStep(step)}/>
             </>            
         )
         case 3: return (
             <>
-                <Stepper step={step}/>
+                {/* <Stepper step={step}/> */}
                 <CardData setStep = {(step) => setStep(step)} />
                 <p className={styles.PaymentContainer__fees}>
                     All fees included 

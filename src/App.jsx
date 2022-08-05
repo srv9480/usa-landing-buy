@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "@libs";
 
 // pages
-import Payment from './pages/Payment';
+import MainBlock from './pages/MainBlock';
 import Status from './pages/Status'
 //import MainBlock from './pages/MainBlock'
 
@@ -20,8 +20,8 @@ function App () {
                 <Route path='/status' element={<Status />}>
                     <Route path=':id/:hash/:cashinId' element={<Status />} />
                 </Route>
-                <Route path='/' element={<Payment />}>
-                    <Route path=':id/:hash/:error' element={<Payment />} />
+                <Route path='/' element={<MainBlock />}>
+                    <Route path=':id/:hash/:error' element={<MainBlock />} />
                 </Route>
                 <Route path='*' element={<Navigate to="/"/>} />
             </Routes>
