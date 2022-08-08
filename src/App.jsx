@@ -2,6 +2,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
+
 // libs
 import "@libs";
 
@@ -13,7 +14,8 @@ import Status from './pages/Status'
 // global styles
 import "@styles/root.css";
 
-function App () {
+function App() {
+
     return (
         <BrowserRouter>
             <Routes>
@@ -23,7 +25,7 @@ function App () {
                 <Route path='/' element={<MainBlock />}>
                     <Route path=':id/:hash/:error' element={<MainBlock />} />
                 </Route>
-                <Route path='*' element={<Navigate to="/"/>} />
+                <Route path='*' element={<Navigate to="/" />} />
             </Routes>
         </BrowserRouter>
     )

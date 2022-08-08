@@ -5,8 +5,10 @@ let instance = null;
 
 export const currencyes = class extends BaseRequest {
     static getInstance() {
-        if (instance === null) {
-            instance = new this;
+        switch (instance) {
+            case null:
+                instance = new this;
+                break;
         }
 
         return instance;
@@ -18,33 +20,39 @@ export const currencyes = class extends BaseRequest {
     }
     response(successCallback, failCallback) {
         const shift = this._dataCallback.shift();
-        if(shift) {
-            if(typeof successCallback === 'function') {
+        if(!shift) {
+            return;
+        }
+        switch (typeof successCallback) {
+            case 'function':
                 shift.promise.then(successCallback);
-            }
+                break;
+        }
 
-            if(typeof failCallback === 'function') {
+        switch (typeof failCallback) {
+            case 'function':
                 shift.promise.catch(failCallback);
-            } else {
+                break;
+            default:
                 shift.promise.catch(() => {
                     setTimeout(() => {
                         this.request(...shift.arguments);
                         this.response(successCallback);
-                    }, 20000);
+                    }, 20_000);
                 });
-            }
+                break;
         }
     }
     request() {
         this._dataCallback.push({
-            arguments: arguments,
+            arguments,
             promise: new Promise((resolve, reject) => {
                 this.get(`/api/v1/Data/currencies?sourceType=Exchanger`).then((response) => {
-                    if (typeof response.data !== 'undefined') {
-                        resolve(response.data);
-                    } else {
+                    if (typeof response.data === 'undefined') {
                         reject(response);
+                        return;
                     }
+                    resolve(response.data);
                 }).catch(reject);
             })
         });

@@ -19,7 +19,7 @@ const Class = new class {
                 && item.href === url
             ));
             if(some) {
-                let ref = d.createElement(tag);
+                const ref = d.createElement(tag);
                 ref.setAttribute("rel", rel);
                 ref.setAttribute("type", type);
                 ref.setAttribute("href", url);

@@ -4,6 +4,19 @@
     font-weight: bold
     font-size: 24px
     outline: 0
+    .orderData__logoGroup 
+                display: flex
+                align-items: center
+                .pci 
+                    width: 34px   
+                .visa 
+                    height: 18px
+                .mastercard 
+                    height: 18px
+                &:nth-child(2) 
+                    margin: 0 7px
+                
+        
     &:hover
         background: rgba(#3463F8, 0.9)
         cursor: pointer
@@ -72,17 +85,17 @@
     input:focus + label
         color: #3463F8 !important
         transform: translateX(-10px) translateY(-34px)
-        font-size: 12px
+        font-size: 14px
     input:valid + label
         color: rgba(0, 0, 0, 0.6)
         transform: translateX(-10px) translateY(-34px)
-        font-size: 12px
+        font-size: 14px
     input:valid
     &.active
         label
             color: rgba(0, 0, 0, 0.6)
             transform: translateX(-10px) translateY(-34px)
-            font-size: 12px
+            font-size: 14px
     &.error
         input + label
             color: red !important

@@ -70,9 +70,7 @@ class FullscreenLoader extends Expansion {
                     <div>
                         {
                             this.state.logoUrl
-                            && <>
-                                <object ref={ref => this.object = ref} type={this.state.type} data={this.state.logoUrl}/>
-                            </>
+                            && <object ref={ref => this.object = ref} type={this.state.type} data={this.state.logoUrl}/>
                         }
                     </div>
                 </div>

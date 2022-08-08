@@ -6,12 +6,11 @@ export default () => dispatch => {
     return axios.get(`/api/v1/Data/countries`)
         .then(response => {
             const { data } = response
-            if (data) {
-                dispatch({type: COUNTRIES, data: data });
-                return data;
-            } else {
+            if (!data) {
                 return Promise.reject(response);
             }
+            dispatch({type: COUNTRIES, data });
+            return data;
         }
         ).catch(e => {
             Promise.reject(e);

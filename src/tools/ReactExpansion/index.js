@@ -1,19 +1,20 @@
 
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 export const Expansion = class extends Component {
     setStateUpdate(state = {}, callback) {
-        if(typeof state === 'object') {
-            let object = {}, update = false;
-            
-            for(let key in state) {
-                if(state[key] !== this.state[key]) {
+        if (typeof state === 'object') {
+            const object = {};
+            let update = false;
+
+            for (let key in state) {
+                if (state[key] !== this.state[key]) {
                     object[key] = state[key];
                     update = true;
                 }
             }
 
-            if(update) {
+            if (update) {
                 this.setState(object, callback);
             }
         }
@@ -22,7 +23,7 @@ export const Expansion = class extends Component {
     get(key, value) {
         const url = new URL(window.location);
 
-        switch(value) {
+        switch (value) {
             case undefined:
                 value = url.searchParams.get(key);
                 return value === null ? null : decodeURIComponent(value);
@@ -33,7 +34,7 @@ export const Expansion = class extends Component {
                 url.searchParams.set(key, encodeURIComponent(value));
         }
 
-        if(url.href !== window.location.href) {
+        if (url.href !== window.location.href) {
             window.history.replaceState(null, document.title, url.href);
         }
     }
@@ -41,7 +42,7 @@ export const Expansion = class extends Component {
     sessionStorage(key, value) {
         const ss = window.sessionStorage;
 
-        switch(value) {
+        switch (value) {
             case undefined:
                 return ss.getItem(key)
             case null:

@@ -11,7 +11,7 @@ export const Button = (props) => {
     return (
         <button
             type={props.type || 'button'}
-            className={`${styles.button} ${props.className == 'text' ? styles.text : styles.filled}`}
+            className={`${styles.button} ${styles.orderData__logoGroup} ${props.className == 'text' ? styles.text : styles.filled}`}
             style={props.style || {}}
             disabled={props.disabled || props.loader || false}
             onClick={props.onClick}

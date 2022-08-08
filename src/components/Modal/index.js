@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Modal from 'react-modal';
 import styles from './styles.scss';
 
-Modal.setAppElement('#root');
+Modal.setAppElement(`#root`);
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, .75)';
 Modal.defaultStyles.overlay.zIndex = 2147483640;
