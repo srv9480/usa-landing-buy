@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import FullscreenLoader from "@containers/FullscreenLoader";
 import { PaymentContainer } from "@containers/Payment/index.jsx";
 import ModalMy from "../../components/ModalMy";
-import OrderData from "../../containers/Payment/render/OrderData";
 import Button from "@components/Button";
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
@@ -44,23 +43,29 @@ function Paymentpage(props) {
                                         </div>
                                     </div>
                                     <div className={styles.buyForm}>
-
                                         <PaymentContainer step={(step) => setStep(step)} />
+                                        <Button type={'button'} onClick={() => setModal(true)} className={'button'}>Buy Crypto Now</Button>
                                     </div>
+                                </div>
+                            </div>
 
-
-                                </div>                               
-                                 </div>                                                                                       
-                                 <Button type={'button'} onClick={() => setModal(true)} className={'button'}>Buy Crypto Now</Button>
-                        </section>}
-                        <ModalMy                        
+                        
+                        <ModalMy
                             isVisible={isModal}
                             title={"Buy Crypto"}
-                            content={<OrderData />}
-                            footer={<button>Cancel</button>}
+                            // content={<OrderData />}
+                            content={<PaymentContainer step={(step) => setStep(step)} />}
+                            // footer={<button>Cancel</button>}
                             onClose={() => setModal(false)}
                         />
+</section>}
+                        {step === 2 && <section>
+                            <div>
 
+
+
+                            </div>
+                        </section>}
                     </div>
             }
         </>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import styles from "./styles.scss";
-import ModalMy from '../../../../components/ModalMy';
 // redux
 import { connect } from "react-redux";
 import action_getInstanceState from "@redux/actions/getInstanceState";
@@ -12,7 +11,7 @@ import YouGet from "@components/FormConsolidation/inputs/YouGet";
 import Button from "@components/Button";
 import { Input } from '@components/Button';
 import MessageBox from '@components/MessageBox';
-
+import ModalMy from '@components/ModalMy';
 
 // request
 import requests from "@requests/request";
@@ -166,8 +165,8 @@ const OrderData = (props) => {
         const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
         if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
         else {
-            setErrorWallet(false)
-            setDisabledWallet(true)
+            setErrorWallet(true)
+            setDisabledWallet(false)
         }
     }
 
@@ -261,7 +260,7 @@ const OrderData = (props) => {
                 />
             </div>
             {/* <ul className={styles.networksList}>
-                {/* {
+                 {
                     ( networks.map(network => 
                         <li key={network.shortName}
                         onClick={() => setActiveNetwork(network.shortName)}
@@ -270,7 +269,7 @@ const OrderData = (props) => {
                     ))
                 } 
             </ul> */}
-            {/* <Input
+             <Input
                 label={'Recipient’s address'}
                 error={errorWallet}
                 value={addressWallet}
@@ -280,14 +279,23 @@ const OrderData = (props) => {
                 onPaste={(value) => validateWallet(value)}
                 onBlur={(value) => validateWallet(value)}
             />
-             */}
+            
              
             <div className={styles.orderData__buttonBlock}>
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
                {/* <ModalMy active={modalActive} setActive={setModalActive} />*/}
-                <Button type={'button'} onClick={() => setModalActive(true)} loading={loading} className={'button'} title={'Buy Crypto now'}
-                /> 
-                
+                {/* <Button type={'button'} onClick={() => setModalActive(true)} loading={loading} className={'button'} title={'Buy Crypto now'}
+                />  */}
+
+                <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={disableButton} className={'button'}>Buy Crypto Now</Button>
+
+                <ModalMy
+                            isVisible={isModal}
+                            title={"Buy Crypto"}
+                            content={<OrderData />}
+                            footer={<button>Cancel</button>}
+                            onClose={() => setModal(false)}
+                        />
                 
                 <div className={styles.orderData__logoGroup}>
                     <img src={pci} alt="PCI" className={styles.pci} />
