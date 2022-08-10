@@ -26,14 +26,14 @@ export function PaymentContainer(props) {
     return (
         
         <div className={styles.PaymentContainer}>
-            {renderForm(step, setStep)}
+            {renderForm(step, setStep, props.valueSelected, props.currencyGive, props.currencyGet, props.valueGet)}
         </div>
     )
 }
-function renderForm(step, setStep) {
+function renderForm(step, setStep, valueSelected, currencyGive, currencyGet, valueGet) {
     switch(step) {
         case 1: return (
-            <OrderData setStep = {(step) => setStep(step)} />
+            <OrderData valueGet={valueGet} currencyGet={currencyGet} currencyGive={currencyGive} valueSelected={valueSelected} setStep = {(step) => setStep(step)} />
         )
         // case 1: return <OrderData setStep = {(step) => setStep(step)} />;
         case 2: return (

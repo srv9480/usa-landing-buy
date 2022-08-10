@@ -15,6 +15,11 @@ function Paymentpage(props) {
     const [render, setRender] = useState(null)
     const [step, setStep] = useState(1)
     const [isModal, setModal] = React.useState(false);
+    const [valueSelected, setValueSelected] = useState(0)
+    const [currencyGive, setCurrencyGive] = useState("USD")
+    const [currencyGet, setCurrencyGet] = useState("BTC")
+    const [valueGet, setValueGet] = useState(0)
+
     useEffect(() => {
         if (props.currencyes) {
             setRender(true)
@@ -40,7 +45,12 @@ function Paymentpage(props) {
                                         </div>
                                     </div>
                                     <div className={styles.buyForm}>
-                                        <OrderDataTest />
+                                    <OrderDataTest 
+                                                setValueSelected={setValueSelected} 
+                                                setCurrencyGive={setCurrencyGive}
+                                                setCurrencyGet={setCurrencyGet}
+                                                setValueGet={setValueGet}
+                                                />
                                         <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
 
                                     </div>
@@ -50,7 +60,14 @@ function Paymentpage(props) {
                         <ModalMy
                             isVisible={isModal}
                             title={"Buy Crypto"}
-                            content={<PaymentContainer step={(step) => setStep(step)} />}
+                            content={
+                                <PaymentContainer 
+                                    valueSelected={valueSelected} 
+                                    currencyGive={currencyGive}
+                                    currencyGet={currencyGet}
+                                    valueGet={valueGet}
+                                    step={(step) => setStep(step)}
+                                    />}
                             onClose={() => setModal(false)}
                         />
                 </div>    

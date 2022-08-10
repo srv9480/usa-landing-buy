@@ -31,7 +31,7 @@ const OrderData = (props) => {
         }, {})
 
     // YouGive
-    const [selectedYouGive, setSelectedYouGive] = useState('USD');
+    const [selectedYouGive, setSelectedYouGive] = useState(props.currencyGive);
     const [amountGive, setAmountGive] = useState(null);
     const [disabledGive, setDisabledGive] = useState(false)
     const debouncedValue = useDebounce(amountGive, 500)
@@ -39,8 +39,8 @@ const OrderData = (props) => {
     const [priceOneCrypto, setPriceOneCrypto] = useState(null)
 
     // YouGet
-    const [selectedYouGet, setSelectedYouGet] = useState('BTC');
-    const [amountGet, setAmountGet] = useState(null);
+    const [selectedYouGet, setSelectedYouGet] = useState(props.currencyGet);
+    const [amountGet, setAmountGet] = useState(props.valueGet);
     const [disabledGet, setDisabledGet] = useState(false)
     const [loadingGet, setloadingGet] = useState(false)
 
@@ -240,8 +240,8 @@ const OrderData = (props) => {
                     <YouGive
                         currency={selectedYouGive}
                         selectedGive={(curr) => setSelectedYouGive(curr)}
-                        amount={amountGive}
-                        setAmountGive={(value) => setAmountGive(value)}
+                        amount={amountGive || props.valueSelected}
+                        setAmountGive={(value) => setAmountGive(value || props.valueSelected)}
                         items={props.currencyes.fiat.map((curr) => ({ id: curr.id, name: curr.shortName }))}
                         error={errorGive}
                         disabled={disabledGive}
