@@ -40,7 +40,7 @@ const OrderDataTest = (props) => {
     const [priceOneCrypto, setPriceOneCrypto] = useState(null)
 
     // YouGet
-    const [selectedYouGet, setSelectedYouGet] = useState('2LC');
+    const [selectedYouGet, setSelectedYouGet] = useState('BTC');
     const [amountGet, setAmountGet] = useState(null);
     const [disabledGet, setDisabledGet] = useState(false)
     const [loadingGet, setloadingGet] = useState(false)
@@ -150,6 +150,7 @@ const OrderDataTest = (props) => {
         const network = youGet.networks.find((network) => network.shortName.toUpperCase() === activeNetwork.toUpperCase()) || youGet.networks[0]
         requests.Calculator(youGive.id, youGet.id, debouncedValue, network.id).then((data) => {
             setAmountGet(data)
+            props.setValueGet(data)
         }).catch(error => {
             if (error.response.status === 400) setErrorGive(error.response.data)
             else setErrorGive('internal Server Error')
@@ -226,9 +227,15 @@ const OrderDataTest = (props) => {
                     <div className={styles.orderDataGive}>You Give</div>
                     <YouGive
                         currency={selectedYouGive}
-                        selectedGive={(curr) => setSelectedYouGive(curr)}
+                        selectedGive={(curr) => {
+                            setSelectedYouGive(curr);
+                            props.setCurrencyGive(curr)
+                        }}
                         amount={amountGive}
-                        setAmountGive={(value) => setAmountGive(value)}
+                        setAmountGive={(value) => {
+                            setAmountGive(value)
+                            props.setValueSelected(value)
+                        }}
                         items={props.currencyes.fiat.map((curr) => ({ id: curr.id, name: curr.shortName }))}
                         error={errorGive}
                         disabled={disabledGive}
@@ -241,7 +248,9 @@ const OrderDataTest = (props) => {
                     <span className={styles.orderData__currencyes__give}>You Get</span>
                 <YouGet
                     currency={selectedYouGet}
-                    selectedGive={(curr) => setSelectedYouGet(curr)}
+                    selectedGive={(curr) => {
+                        setSelectedYouGet(curr)
+                        props.setCurrencyGet(curr)}}
                     amount={amountGet}
                     items={props.currencyes.crypto.map((curr) => ({ id: curr.id, name: curr.shortName }))}
                     disabled={disabledGet}

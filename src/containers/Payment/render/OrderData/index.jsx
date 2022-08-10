@@ -31,7 +31,7 @@ const OrderData = (props) => {
         }, {})
 
     // YouGive
-    const [selectedYouGive, setSelectedYouGive] = useState('USD');
+    const [selectedYouGive, setSelectedYouGive] = useState(props.currencyGive);
     const [amountGive, setAmountGive] = useState(null);
     const [disabledGive, setDisabledGive] = useState(false)
     const debouncedValue = useDebounce(amountGive, 500)
@@ -39,12 +39,12 @@ const OrderData = (props) => {
     const [priceOneCrypto, setPriceOneCrypto] = useState(null)
 
     // YouGet
-    const [selectedYouGet, setSelectedYouGet] = useState('BTC');
-    const [amountGet, setAmountGet] = useState(null);
+    const [selectedYouGet, setSelectedYouGet] = useState(props.currencyGet);
+    const [amountGet, setAmountGet] = useState(props.valueGet);
     const [disabledGet, setDisabledGet] = useState(false)
     const [loadingGet, setloadingGet] = useState(false)
 
-    // DestinationAddress //TODO константы кошелька
+    // DestinationAddress
     const [addressWallet, setAddressWallet] = useState(null)
     const [errorWallet, setErrorWallet] = useState(false)
     const [disabledWallet, setDisabledWallet] = useState(false)
@@ -87,7 +87,7 @@ const OrderData = (props) => {
             value_network,
             value_youGive,
             value_youGet,
-            value_destinationAddress, // TODO Берём из редукса
+            value_destinationAddress,
         } = props.getInstanceState
         if (selected_youGive && selected_youGet && value_network && value_youGive && value_youGet && value_destinationAddress) {
             return getInstanceParams()
@@ -132,7 +132,7 @@ const OrderData = (props) => {
         setSelectedYouGive(selected_youGive)
         setSelectedYouGet(selected_youGet)
         setAmountGive(value_youGive)
-        validateWallet(value_destinationAddress) //TODO: валидакия кошелька из хранимего значения редукса
+        validateWallet(value_destinationAddress)
         setActiveNetwork(value_network)
         setAmountGet(value_youGet)
         setPartner(value_partnerName)
@@ -158,7 +158,8 @@ const OrderData = (props) => {
         setloadingGet(false)
     }
 
-    function validateWallet(value) {
+   const validateWallet = (value) => {
+console.log(value);
         setAddressWallet(value)
         const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
         const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
@@ -211,7 +212,7 @@ const OrderData = (props) => {
                         value_youGive: amountGive,
                         value_youGet: amountGet,
                         value_network: activeNetwork,
-                        value_destinationAddress: addressWallet //TODO создание реквеста со значением введенного кошелька
+                        value_destinationAddress: addressWallet
 
                     });
                     props.setStep(2)
@@ -237,11 +238,12 @@ const OrderData = (props) => {
 
                 
                     <div className={styles.orderDataGive}>You Give</div>
+                    
                     <YouGive
                         currency={selectedYouGive}
                         selectedGive={(curr) => setSelectedYouGive(curr)}
-                        amount={amountGive}
-                        setAmountGive={(value) => setAmountGive(value)}
+                        amount={amountGive || props.valueSelected}
+                        setAmountGive={(value) => setAmountGive(value || props.valueSelected)}
                         items={props.currencyes.fiat.map((curr) => ({ id: curr.id, name: curr.shortName }))}
                         error={errorGive}
                         disabled={disabledGive}
@@ -262,7 +264,7 @@ const OrderData = (props) => {
                 />
             </div>
              <ul className={styles.networksList}>
-                <span>в эти поля перекидываем значения кприпты </span>
+                <span>в эти поля перекидываем значения кприпты {props.validateWallet} </span>
                  {
                     ( networks.map(network => 
                         <li key={network.shortName}
@@ -270,28 +272,18 @@ const OrderData = (props) => {
                         className={`${activeNetwork === network.shortName && styles.networkActive}`}
                         >{network.shortName}</li>
                     ))
+                
                 } 
             </ul>
 
-            <span>3QEtfcqLZuWsBuA7k8mraiCBeL32YBm8Gj</span>
-            <Input
-                label={'Recipient’s address'}
-                error={errorWallet}
-                value={addressWallet}
-                disabled={disabledWallet}
-                required={'required'}
-                onChange={(value) => validateWallet(value)}
-                onPaste={(value) => validateWallet(value)}
-                onBlur={(value) => validateWallet(value)}
-            /> 
-
+           
 
             <div className={styles.orderData__buttonBlock}>
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
                 {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
                 />  */}
 
-                <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={false} className={'button'} title={'Buy'}
+                <Button type={'button'} onClick={() => createRequest(false)} loading={loading} disabled={false} className={'button'} title={'Buy'}
                 />  
 
                 <div className={styles.orderData__logoGroup}>

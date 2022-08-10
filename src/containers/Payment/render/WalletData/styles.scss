@@ -1,0 +1,147 @@
+.orderData {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // background-color: #FFFFFF;
+    // margin: 24px auto 0;
+    // padding: 24px;
+
+    // border-radius: 13px;
+    // box-shadow: 3px 3px 11px -1px rgba(147, 147, 147, 0.25);
+    .orderData__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        span {
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 28px;
+        }
+
+        .orderData__logoGroup {
+            display: flex;
+            align-items: center;
+
+            .pci {
+                width: 34px;
+            }
+
+            .visa {
+                height: 18px;
+            }
+
+            .mastercard {
+                height: 18px;
+            }
+
+            :nth-child(2) {
+                margin: 0 7px;
+            }
+        }
+    }
+
+    .orderData__currencyes {
+        display: block;
+        justify-content: space-between;
+        .orderDataGive {
+            text-align: left;
+            margin-bottom: 9px;
+        }
+        svg {
+            margin: 15px;
+        }
+    }
+
+    .networksList {
+        background: #F8F8F8;
+        border: 1px solid #DADCE0;
+        border-radius: 13px;
+        padding: 8px !important;
+        margin: 8px 0 40px 0;
+        display: flex;
+        width: fit-content;
+        align-self: normal;
+        justify-content: center;
+
+        :not(:last-child) {
+            margin-right: 8px;
+        }
+
+        li {
+            color: #000000;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 15px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        // .networkActive {
+        //     background: #640777;
+        //     border: 1px solid #3463F8;
+        //     color: #FFFFFF;
+        //     border-radius: 6px;
+        // }
+    }
+
+    .orderData__buttonBlock {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 24px;
+
+        .orderData__logoGroup {
+            display: flex;
+            align-items: center;
+
+            .pci {
+                width: 34px;
+            }
+
+            .visa {
+                height: 18px;
+            }
+
+            .mastercard {
+                height: 18px;
+            }
+
+            :nth-child(2) {
+                margin: 0 7px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .orderData {
+        margin: 16px auto 0;
+        padding: 16px 16px;
+
+        .orderData__currencyes {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 9px;
+                
+            svg {
+                transform: rotate(90deg);
+                margin: 35px auto 35px 0 !important;
+
+                path {
+                    fill: #3463F8;
+                }
+            }
+        }
+
+        .orderData__buttonBlock {
+            flex-direction: column-reverse;
+            margin-top: 16px;
+
+            :last-child {
+                margin-bottom: 16px;
+            }
+        }
+    }
+}

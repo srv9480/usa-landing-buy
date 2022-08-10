@@ -13,6 +13,7 @@ import requests from "@requests/request";
 import OrderData from "@containers/Payment/render/OrderData";
 import ContactData from "@containers/Payment/render/ContactData";
 import CardData from "@containers/Payment/render/CardData";
+import WalletData from "@containers/Payment/render/WalletData";
 
 export function PaymentContainer(props) {
     const [step, setStep] = useState(1)
@@ -26,20 +27,25 @@ export function PaymentContainer(props) {
     return (
         
         <div className={styles.PaymentContainer}>
-            {renderForm(step, setStep)}
+            {renderForm(step, setStep, props.valueSelected, props.currencyGive, props.currencyGet, props.valueGet)}
         </div>
     )
 }
-function renderForm(step, setStep) {
+function renderForm(step, setStep, valueSelected, currencyGive, currencyGet, valueGet) {
     switch(step) {
         case 1: return (
-            <OrderData setStep = {(step) => setStep(step)} />
+            <OrderData valueGet={valueGet} currencyGet={currencyGet} currencyGive={currencyGive} valueSelected={valueSelected} setStep = {(step) => setStep(step)} />
         )
         // case 1: return <OrderData setStep = {(step) => setStep(step)} />;
         case 2: return (
+            <WalletData valueGet={valueGet} currencyGet={currencyGet} currencyGive={currencyGive} valueSelected={valueSelected} setStep = {(step) => setStep(step)}/>            
+        )
+
+        case 3: return (
             <ContactData setStep = {(step) => setStep(step)}/>            
         )
-        case 3: return (
+
+        case 4: return (
             <>
                
                 <CardData setStep = {(step) => setStep(step)} />

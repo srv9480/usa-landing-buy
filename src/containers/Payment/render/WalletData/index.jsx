@@ -1,171 +1,290 @@
-// tools
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
-
 import styles from "./styles.scss";
+// redux
 import { connect } from "react-redux";
 import action_getInstanceState from "@redux/actions/getInstanceState";
 
 // components
+import YouGive from "@components/FormConsolidation/inputs/YouGive";
+import YouGet from "@components/FormConsolidation/inputs/YouGet";
 import Button from "@components/Button";
-
-// import {Phone, Email, VerifyContact, Wallet} from '@components/Contact'
-import MessageBox from '@components/MessageBox'
+import { Input } from '@components/Button';
+import MessageBox from '@components/MessageBox';
 
 // request
-import ContactRequest from '@requests/payment/ContactRequest';
+import requests from "@requests/request";
 
-
-const [addressWallet, setAddressWallet] = useState(null)
-const [errorWallet, setErrorWallet] = useState(false)
-const [disabledWallet, setDisabledWallet] = useState(false)
-
-
+// img
+import mastercard from '@assets/images/icons/mastercard.svg'
+import pci from '@assets/images/icons/pci.svg'
+import visa from '@assets/images/icons/visa.png'
 
 const WalletData = (props) => {
-      const [searchParams] = useSearchParams();
-      const query = [...searchParams.entries()]
-            .reduce((acc, val) => {
-                  const [key, value] = val
-                  return { ...acc, [key]: value }
-            }, {})
-      const [errorCode, setErrorCode] = useState(null)
-      const [step, setStep] = useState('Wallet')
-      // const [toggleMenu, setToggleMenu] = useState(false)
-      // const [typeContact, setTypeContact] = useState('Email')
+
+    // Query параметры из URL
+    const [searchParams] = useSearchParams();
+    const query = [...searchParams.entries()]
+        .reduce((acc, val) => {
+            const [key, value] = val
+            return { ...acc, [key]: value }
+        }, {})
+
+    // YouGive
+    const [selectedYouGive, setSelectedYouGive] = useState(props.currencyGive);
+    const [amountGive, setAmountGive] = useState(null);
+    const [disabledGive, setDisabledGive] = useState(false)
+    const debouncedValue = useDebounce(amountGive, 500)
+    const [errorGive, setErrorGive] = useState(null);
+    const [priceOneCrypto, setPriceOneCrypto] = useState(null)
+
+    // YouGet
+    const [selectedYouGet, setSelectedYouGet] = useState(props.currencyGet);
+    const [amountGet, setAmountGet] = useState(props.valueGet);
+    const [disabledGet, setDisabledGet] = useState(false)
+    const [loadingGet, setloadingGet] = useState(false)
+
+    // DestinationAddress
+    const [addressWallet, setAddressWallet] = useState(null)
+    const [errorWallet, setErrorWallet] = useState(false)
+    const [disabledWallet, setDisabledWallet] = useState(false)
+
+    // Networks
+    const [networks, setNetworks] = useState([])
+    const [activeNetwork, setActiveNetwork] = useState(null);
+
+    // Общие
+    const [partner, setPartner] = useState(null)
+    const [disableButton, setDisableButton] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    // const [modalActive, setModalActive] = useState(true);
+    const [isModal, setModal] = React.useState(false);
+
+
+    // Подгрузка списка сетей при смене криптовалюты и установка активной сети    
+    useEffect(() => {
+        setNetworks(props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet).networks)
+        if (addressWallet) validateWallet(addressWallet)
+        if (debouncedValue) Converter()
+    }, [selectedYouGet])
+
+    useEffect(() => setActiveNetwork(networks[0]?.shortName), [networks])
+
+    // Запуск конвертера при изменении валют и суммы
+    useEffect(() => {
+        if (debouncedValue) Converter()
+    }, [selectedYouGive, debouncedValue])
 
 
 
+    // Инициализация компонента, проверка на наличие в query и redux
+    // partner= amount= cur_from= cur_to= address= email=
+    useEffect(() => {
+        const {
+            selected_youGive,
+            selected_youGet,
+            value_network,
+            value_youGive,
+            value_youGet,
+            value_destinationAddress,
+        } = props.getInstanceState
+        if (selected_youGive && selected_youGet && value_network && value_youGive && value_youGet && value_destinationAddress) {
+            return getInstanceParams()
+        } else if (query && query.cur_from && query.cur_to && query.amount && query.address && query.email) return getQueryParams()
+    }, [])
 
-      const [loading, setLoading] = useState(false)
+    // Включаем/Выключаем кнопку в зависимости от заполнения данных
+    useEffect(() => {
+        if (typeof amountGet === 'number' && !errorGive && addressWallet && !errorWallet) return setDisableButton(false)
+        setDisableButton(true)
+    }, [amountGet, addressWallet])
 
+    useEffect(() => {
+        if (amountGet && (amountGive / amountGet) != Infinity) {
+            return setPriceOneCrypto(`1 ${selectedYouGet} ~ ${(amountGive / amountGet).toFixed(6)} ${selectedYouGive}`)
+        }
+        else setPriceOneCrypto(null)
+    }, [amountGet, selectedYouGet, selectedYouGive])
 
-      //     useEffect(()=> {
-      //         if (query.email) {
-      //             setTypeContact('Email')
-      //             validateEmail(query.email)
-      //         }        
-      //     }, [])
+    function getQueryParams() {
+        if (query.partner) setPartner(query.partner)
+        // забираем параметры
+        setSelectedYouGive(query.cur_from.toUpperCase())
+        setSelectedYouGet(query.cur_to.toUpperCase())
+        setAmountGive(query.amount)
+        validateWallet(query.address)
+        // отключаем поля
+        setDisabledGive(true)
+        setDisabledGet(true)
+        setDisabledWallet(true)
+    }
+    function getInstanceParams() {
+        const {
+            selected_youGive,
+            selected_youGet,
+            value_network,
+            value_youGive,
+            value_youGet,
+            value_destinationAddress,
+            value_partnerName
+        } = props.getInstanceState
+        setSelectedYouGive(selected_youGive)
+        setSelectedYouGet(selected_youGet)
+        setAmountGive(value_youGive)
+        validateWallet(value_destinationAddress)
+        setActiveNetwork(value_network)
+        setAmountGet(value_youGet)
+        setPartner(value_partnerName)
+        // отключаем поля
+        setDisabledGive(true)
+        setDisabledGet(true)
+        setDisabledWallet(true)
+    }
 
-      // переключение типа контакта
+    function Converter() {
+        setloadingGet(true)
+        setAmountGet(' ')
+        setErrorGive(null)
+        const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
+        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
+        const network = youGet.networks.find((network) => network.shortName.toUpperCase() === activeNetwork.toUpperCase()) || youGet.networks[0]
+        requests.Calculator(youGive.id, youGet.id, debouncedValue, network.id).then((data) => {
+            setAmountGet(data)
+        }).catch(error => {
+            if (error.response.status === 400) setErrorGive(error.response.data)
+            else setErrorGive('internal Server Error')
+        })
+        setloadingGet(false)
+    }
 
+    const validateWallet = (value) => {
+        console.log(value);
+        setAddressWallet(value)
+        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
+        const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
+        if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
+        else {
+            setErrorWallet(true)
+            setDisabledWallet(false)
+        }
+    }
 
+    function createRequest() {
+        const {
+            value_exchangeRequestId,
+            value_exchangeRequestHash,
+            verify_contact
+        } = props.getInstanceState
+        const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
+        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
+        const network = youGet.networks.find((network) => network.shortName === activeNetwork)
+        if (!value_exchangeRequestId && !value_exchangeRequestHash) {
+            const currencyInId = youGive.id;
+            const currencyOutId = youGet.id;
+            const amountOut = amountGet;
+            const amountIn = Number(amountGive);
+            const cryptoAddress = addressWallet;
+            const networkId = network.id;
+            const partnerName = partner;
+            const exchangeRequestUserAgentInfo = {
+                windowInnerWidth: window.innerWidth,
+                windowInnerHeight: window.innerHeight,
+                browserScreenColorDepth: window.screen.colorDepth,
+                browserJavaEnabled: true,
+                browserTimeZone: 0,
+                browserScreenWidth: window.screen.width,
+                browserScreenHeight: window.screen.height
+            };
+            const params = { currencyInId, currencyOutId, amountIn, amountOut, cryptoAddress, networkId, partnerName, exchangeRequestUserAgentInfo };
+            setLoading(true)
+            setDisableButton(true)
+            requests.Exchange(params).then(response => {
+                setLoading(false)
+                setDisableButton(false)
+                if (response?.exchangeRequestId && response.hash && response.tradeUserId) {
+                    props.action_getInstanceState({
+                        value_exchangeRequestId: response.exchangeRequestId,
+                        value_exchangeRequestHash: response.hash,
+                        value_tradeUserId: response.tradeUserId,
+                        selected_youGive: selectedYouGive,
+                        selected_youGet: selectedYouGet,
+                        value_youGive: amountGive,
+                        value_youGet: amountGet,
+                        value_network: activeNetwork,
+                        value_destinationAddress: addressWallet
 
-      //     function validateEmail (value) {
-      //         console.log(value)
-      //         setValueEmail(value)
-      //         if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test( value )) {
-      //             setErrorContact(null)
-      //         } else setErrorContact('Incorrect email address')
-      //     }
+                    });
+                    props.setStep(3)
+                } else {
+                    setError('Internal server Error. Please contact technical support')
+                }
+            })
+        } else if (verify_contact) props.setStep(4)
+        else { props.setStep(3) }
+    }
 
-
-      function validateWallet(value) {
-            setAddressWallet(value)
-            const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
-            const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
-            if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
-            else {
-                  setErrorWallet(true)
-                  setDisabledWallet(false)
-            }
-      }
-
-
-
-
-      // function nextStep() {
-      //       if (step === 'Wallet') {
-      //             setLoading(true)
-      //             let contact
-      //             if (typeContact === 'Phone') contact = valuePhone
-      //             else contact = valueEmail
-      //             ContactRequest.AddContacts(
-      //                   props.getInstanceState.value_tradeUserId, typeContact, contact).then(response => {
-      //                         setStep('Contact')
-      //                         setContactId(response.id)
-      //                         setLoading(false)
-      //                         setErrorVerify(null)
-      //                   }).catch(error => {
-      //                         if (error.response.status === 400) setErrorContact(error.response.data)
-      //                         else if (error.response.status === 500) setErrorContact('One or more fields are filled out incorrectly')
-      //                         else if (error.response.status === 429) setErrorContact('Too many requests. Please wait a minute and try again')
-      //                         else setErrorContact('internal Server Error')
-      //                         setLoading(false)
-      //                   })
-      //       } else props.setStep(3)
-      // }
-
-      // function backStep() {
-      //       if (step === 'Contact') {
-      //             console.log(this)
-      //             setStep('Wallet')
-      //       } else {
-      //             props.setStep(1)
-      //       }
-      // }
-      // function disableNextButton(bool) {
-      //       if (loading) return true
-
-      // }
-      return (
-            <div className={styles.ContactData}>
-                  <div className={styles.ContactData__header}>
-                        <span> Verify your contact information </span>
-                  </div>
-                  <span className={styles.error}>{errorCode}</span>
-                  <div className={styles.ContactData__main}>
-                        {
-                              step === 'Wallet' ?
-                                    <div className={styles.fieldContact}>
-                                         
-                                          <Input
-                                                label={'Recipient’s address'}
-                                                error={errorWallet}
-                                                value={addressWallet}
-                                                disabled={disabledWallet}
-                                                required={'required'}
-                                                onChange={(value) => validateWallet(value)}
-                                                onPaste={(value) => validateWallet(value)}
-                                                onBlur={(value) => validateWallet(value)}
-                                          />
-                                    </div>
-                                    :
-                                    <Input
-                                                label={'Recipient’s address'}
-                                                error={errorWallet}
-                                                value={addressWallet}
-                                                disabled={disabledWallet}
-                                                required={'required'}
-                                                onChange={(value) => validateWallet(value)}
-                                                onPaste={(value) => validateWallet(value)}
-                                                onBlur={(value) => validateWallet(value)}
-                                          />
-                        }
-                  </div>
-                 
-                  <div className={`${styles.ContactData__footer} ${step === 'Verify' && styles.footerCenter}`}>
-                        <Button type={'button'} onClick={() => backStep()} disabled={false} className={'text'}>
-                              <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.999999 7L0.292892 6.29289C0.105355 6.48043 -1.39974e-06 6.73478 -1.34048e-06 7C-1.28123e-06 7.26522 0.105356 7.51957 0.292892 7.70711L0.999999 7ZM7.70711 1.70711C8.09763 1.31658 8.09763 0.683418 7.70711 0.292893C7.31658 -0.0976319 6.68342 -0.0976317 6.29289 0.292893L7.70711 1.70711ZM6.2929 13.7071C6.68342 14.0976 7.31659 14.0976 7.70711 13.7071C8.09763 13.3166 8.09763 12.6834 7.70711 12.2929L6.2929 13.7071ZM1.70711 7.70711L7.70711 1.70711L6.29289 0.292893L0.292892 6.29289L1.70711 7.70711ZM7.70711 12.2929L1.70711 6.29289L0.292892 7.70711L6.2929 13.7071L7.70711 12.2929Z" fill="#3463F8" />
-                              </svg> Back
-                        </Button>
-                        <Button type={'button'} onClick={() => nextStep()} loading={loading} disabled={disableNextButton()} className={'button'}>
-                              {step === 'Wallet' ? 'Continue' : 'Confirm'}
-                        </Button>
-                  </div>
+    return (
+        <div className={styles.orderData}>
+            {/* <div className={styles.orderData__header}>
+                <span>Buy {selectedYouGet}</span>
+                <div className={styles.orderData__logoGroup}>
+                    <img src={pci} alt="PCI" className={styles.pci} />
+                    <img src={visa} alt="visa" className={styles.visa} />
+                    <img src={mastercard} alt="mastercard" className={styles.mastercard} />
+                </div>
+            </div> */}
+            <div className={styles.orderData__currencyes}>
             </div>
-      );
+            
+            <span style={{color: 'red'}}>Your Crypto Wallet</span>
+            <Input
+                label={'Recipient’s address'}
+                error={errorWallet}
+                value={addressWallet}
+                disabled={disabledWallet}
+                required={'required'}
+                onChange={(value) => validateWallet(value)}
+                onPaste={(value) => validateWallet(value)}
+                onBlur={(value) => validateWallet(value)}
+            />
+            <div className={styles.orderData__buttonBlock}>
+                {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
+                {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
+                />  */}
+                <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={false} className={'button'} title={'NEXT'}
+                />
+            </div>
+            <MessageBox text={error} clearMessage={() => setError(null)} />
+        </div>
+    )
+}
+
+
+// Хук useDebounce для обработки множественного вызова конвертера
+export function useDebounce(value, delay) {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+    useEffect(
+        () => {
+            const handler = setTimeout(() => { setDebouncedValue(value) }, delay);
+            return () => { clearTimeout(handler) }
+        },
+        [value]
+    )
+    return debouncedValue;
 }
 
 export default connect(
-      state => ({
-            getInstanceState: state.getInstanceState,
-            countries: state.countries
-      }),
-      dispatch => ({
-            action_getInstanceState: (obj) => {
-                  dispatch(action_getInstanceState(obj));
-            },
-      })
+    state => ({
+        getInstanceState: state.getInstanceState,
+        currencyes: state.currencyes,
+    }),
+    dispatch => ({
+        action_getInstanceState: (obj) => {
+            dispatch(action_getInstanceState(obj));
+        },
+        action_currencyes: (obj) => {
+            dispatch(action_currencyes(obj));
+        },
+    })
 )(WalletData);
