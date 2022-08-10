@@ -24,8 +24,8 @@ function Paymentpage(props) {
     return (
         <>
             {
-                !render ? <FullscreenLoader /> :
-                    <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>           
+            !render ? <FullscreenLoader /> :
+                    <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>
                         {step === 1 && <section>
                             <div></div>
                             <div className={styles.main}>
@@ -40,22 +40,20 @@ function Paymentpage(props) {
                                         </div>
                                     </div>
                                     <div className={styles.buyForm}>
-                                            <OrderDataTest />
-                                            <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
-
-                <ModalMy
-                    isVisible={isModal}
-                    title={"Buy Crypto"}
-                    content={<PaymentContainer step={(step) => setStep(step)} />}
-                    footer={<button>Cancel</button>}
-                    onClose={() => setModal(false)}
-                />
+                                        <OrderDataTest />
+                                        <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
 
                                     </div>
                                 </div>
                             </div>
                         </section>}
-                    </div>
+                        <ModalMy
+                            isVisible={isModal}
+                            title={"Buy Crypto"}
+                            content={<PaymentContainer step={(step) => setStep(step)} />}
+                            onClose={() => setModal(false)}
+                        />
+                </div>    
             }
         </>
     )

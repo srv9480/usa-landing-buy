@@ -39,7 +39,7 @@ const OrderData = (props) => {
     const [priceOneCrypto, setPriceOneCrypto] = useState(null)
 
     // YouGet
-    const [selectedYouGet, setSelectedYouGet] = useState('2LC');
+    const [selectedYouGet, setSelectedYouGet] = useState('BTC');
     const [amountGet, setAmountGet] = useState(null);
     const [disabledGet, setDisabledGet] = useState(false)
     const [loadingGet, setloadingGet] = useState(false)
@@ -261,7 +261,8 @@ const OrderData = (props) => {
                     loader={loadingGet}
                 />
             </div>
-            {/* <ul className={styles.networksList}>
+             <ul className={styles.networksList}>
+                <span>в эти поля перекидываем значения кприпты </span>
                  {
                     ( networks.map(network => 
                         <li key={network.shortName}
@@ -270,8 +271,10 @@ const OrderData = (props) => {
                         >{network.shortName}</li>
                     ))
                 } 
-            </ul> */}
-            {/* <Input
+            </ul>
+
+            <span>3QEtfcqLZuWsBuA7k8mraiCBeL32YBm8Gj</span>
+            <Input
                 label={'Recipient’s address'}
                 error={errorWallet}
                 value={addressWallet}
@@ -280,7 +283,7 @@ const OrderData = (props) => {
                 onChange={(value) => validateWallet(value)}
                 onPaste={(value) => validateWallet(value)}
                 onBlur={(value) => validateWallet(value)}
-            /> */}
+            /> 
 
 
             <div className={styles.orderData__buttonBlock}>
