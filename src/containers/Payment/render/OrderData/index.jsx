@@ -44,7 +44,7 @@ const OrderData = (props) => {
     const [disabledGet, setDisabledGet] = useState(false)
     const [loadingGet, setloadingGet] = useState(false)
 
-    // DestinationAddress
+    // DestinationAddress //TODO константы кошелька
     const [addressWallet, setAddressWallet] = useState(null)
     const [errorWallet, setErrorWallet] = useState(false)
     const [disabledWallet, setDisabledWallet] = useState(false)
@@ -87,7 +87,7 @@ const OrderData = (props) => {
             value_network,
             value_youGive,
             value_youGet,
-            value_destinationAddress,
+            value_destinationAddress, // TODO Берём из редукса
         } = props.getInstanceState
         if (selected_youGive && selected_youGet && value_network && value_youGive && value_youGet && value_destinationAddress) {
             return getInstanceParams()
@@ -132,7 +132,7 @@ const OrderData = (props) => {
         setSelectedYouGive(selected_youGive)
         setSelectedYouGet(selected_youGet)
         setAmountGive(value_youGive)
-        validateWallet(value_destinationAddress)
+        validateWallet(value_destinationAddress) //TODO: валидакия кошелька из хранимего значения редукса
         setActiveNetwork(value_network)
         setAmountGet(value_youGet)
         setPartner(value_partnerName)
@@ -211,7 +211,7 @@ const OrderData = (props) => {
                         value_youGive: amountGive,
                         value_youGet: amountGet,
                         value_network: activeNetwork,
-                        value_destinationAddress: addressWallet
+                        value_destinationAddress: addressWallet //TODO создание реквеста со значением введенного кошелька
 
                     });
                     props.setStep(2)

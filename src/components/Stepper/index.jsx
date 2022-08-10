@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './styles.sass'
 
 const Stepper = (props) => {
-    const labelArray = ['Order', 'Contact', 'Payment', 'Verification', 'Success']
+    const labelArray = ['Order', 'Wallet', 'Contact', 'Payment', 'Verification', 'Success']
 
     return (
         <div className={styles.Stepper}>
