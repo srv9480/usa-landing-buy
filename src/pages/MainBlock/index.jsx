@@ -8,6 +8,7 @@ import FullscreenLoader from "@containers/FullscreenLoader";
 import { PaymentContainer } from "@containers/Payment/index.jsx";
 import ModalMy from "../../components/ModalMy";
 import Button from "@components/Button";
+import OrderDataTest from "../../containers/Payment/render/OrderDataTest";
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -24,11 +25,7 @@ function Paymentpage(props) {
         <>
             {
                 !render ? <FullscreenLoader /> :
-                    <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>
-                        <div className={styles.logo}>
-                            {/* <span>POWERED BY</span>
-                            <img src={require('@images/icons/logoIndacoin.svg').default} alt="INDACOIN" /> */}
-                        </div>
+                    <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>           
                         {step === 1 && <section>
                             <div></div>
                             <div className={styles.main}>
@@ -43,27 +40,19 @@ function Paymentpage(props) {
                                         </div>
                                     </div>
                                     <div className={styles.buyForm}>
-                                        <PaymentContainer step={(step) => setStep(step)} />
-                                        <Button type={'button'} onClick={() => setModal(true)} className={'button'}>Buy Crypto Now</Button>
+                                            <OrderDataTest />
+                                            <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
+
+                <ModalMy
+                    isVisible={isModal}
+                    title={"Buy Crypto"}
+                    content={<PaymentContainer step={(step) => setStep(step)} />}
+                    footer={<button>Cancel</button>}
+                    onClose={() => setModal(false)}
+                />
+
                                     </div>
                                 </div>
-                            </div>
-
-                        
-                        <ModalMy
-                            isVisible={isModal}
-                            title={"Buy Crypto"}
-                            // content={<OrderData />}
-                            content={<PaymentContainer step={(step) => setStep(step)} />}
-                            // footer={<button>Cancel</button>}
-                            onClose={() => setModal(false)}
-                        />
-</section>}
-                        {step === 2 && <section>
-                            <div>
-
-
-
                             </div>
                         </section>}
                     </div>

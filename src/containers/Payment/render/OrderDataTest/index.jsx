@@ -11,6 +11,7 @@ import YouGet from "@components/FormConsolidation/inputs/YouGet";
 import Button from "@components/Button";
 import { Input } from '@components/Button';
 import MessageBox from '@components/MessageBox';
+import ModalMy from '@components/ModalMy';
 
 // request
 import requests from "@requests/request";
@@ -20,7 +21,7 @@ import mastercard from '@assets/images/icons/mastercard.svg'
 import pci from '@assets/images/icons/pci.svg'
 import visa from '@assets/images/icons/visa.png'
 
-const OrderData = (props) => {
+const OrderDataTest = (props) => {
 
     // Query параметры из URL
     const [searchParams] = useSearchParams();
@@ -45,9 +46,7 @@ const OrderData = (props) => {
     const [loadingGet, setloadingGet] = useState(false)
 
     // DestinationAddress
-    const [addressWallet, setAddressWallet] = useState(null)
-    const [errorWallet, setErrorWallet] = useState(false)
-    const [disabledWallet, setDisabledWallet] = useState(false)
+    
 
     // Networks
     const [networks, setNetworks] = useState([])
@@ -59,13 +58,14 @@ const OrderData = (props) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     // const [modalActive, setModalActive] = useState(true);
+
     const [isModal, setModal] = React.useState(false);
 
 
     // Подгрузка списка сетей при смене криптовалюты и установка активной сети    
     useEffect(() => {
         setNetworks(props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet).networks)
-        if (addressWallet) validateWallet(addressWallet)
+        
         if (debouncedValue) Converter()
     }, [selectedYouGet])
 
@@ -87,18 +87,17 @@ const OrderData = (props) => {
             value_network,
             value_youGive,
             value_youGet,
-            value_destinationAddress,
         } = props.getInstanceState
-        if (selected_youGive && selected_youGet && value_network && value_youGive && value_youGet && value_destinationAddress) {
+        if (selected_youGive && selected_youGet && value_network && value_youGive && value_youGet) {
             return getInstanceParams()
         } else if (query && query.cur_from && query.cur_to && query.amount && query.address && query.email) return getQueryParams()
     }, [])
 
     // Включаем/Выключаем кнопку в зависимости от заполнения данных
     useEffect(() => {
-        if (typeof amountGet === 'number' && !errorGive && addressWallet && !errorWallet) return setDisableButton(false)
+        if (typeof amountGet === 'number' && !errorGive) return setDisableButton(false)
         setDisableButton(true)
-    }, [amountGet, addressWallet])
+    }, [amountGet])
 
     useEffect(() => {
         if (amountGet && (amountGive / amountGet) != Infinity) {
@@ -113,11 +112,11 @@ const OrderData = (props) => {
         setSelectedYouGive(query.cur_from.toUpperCase())
         setSelectedYouGet(query.cur_to.toUpperCase())
         setAmountGive(query.amount)
-        validateWallet(query.address)
+        
         // отключаем поля
         setDisabledGive(true)
         setDisabledGet(true)
-        setDisabledWallet(true)
+        
     }
     function getInstanceParams() {
         const {
@@ -126,20 +125,20 @@ const OrderData = (props) => {
             value_network,
             value_youGive,
             value_youGet,
-            value_destinationAddress,
+           
             value_partnerName
         } = props.getInstanceState
         setSelectedYouGive(selected_youGive)
         setSelectedYouGet(selected_youGet)
         setAmountGive(value_youGive)
-        validateWallet(value_destinationAddress)
+       
         setActiveNetwork(value_network)
         setAmountGet(value_youGet)
         setPartner(value_partnerName)
         // отключаем поля
         setDisabledGive(true)
         setDisabledGet(true)
-        setDisabledWallet(true)
+        
     }
 
     function Converter() {
@@ -158,17 +157,6 @@ const OrderData = (props) => {
         setloadingGet(false)
     }
 
-    function validateWallet(value) {
-        setAddressWallet(value)
-        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
-        const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
-        if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
-        else {
-            setErrorWallet(true)
-            setDisabledWallet(false)
-        }
-    }
-
     function createRequest() {
         const {
             value_exchangeRequestId,
@@ -183,7 +171,6 @@ const OrderData = (props) => {
             const currencyOutId = youGet.id;
             const amountOut = amountGet;
             const amountIn = Number(amountGive);
-            const cryptoAddress = addressWallet;
             const networkId = network.id;
             const partnerName = partner;
             const exchangeRequestUserAgentInfo = {
@@ -195,7 +182,7 @@ const OrderData = (props) => {
                 browserScreenWidth: window.screen.width,
                 browserScreenHeight: window.screen.height
             };
-            const params = { currencyInId, currencyOutId, amountIn, amountOut, cryptoAddress, networkId, partnerName, exchangeRequestUserAgentInfo };
+            const params = { currencyInId, currencyOutId, amountIn, amountOut, networkId, partnerName, exchangeRequestUserAgentInfo };
             setLoading(true)
             setDisableButton(true)
             requests.Exchange(params).then(response => {
@@ -211,7 +198,7 @@ const OrderData = (props) => {
                         value_youGive: amountGive,
                         value_youGet: amountGet,
                         value_network: activeNetwork,
-                        value_destinationAddress: addressWallet
+                        
 
                     });
                     props.setStep(2)
@@ -285,17 +272,14 @@ const OrderData = (props) => {
 
             <div className={styles.orderData__buttonBlock}>
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
-                {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
+                {/* <Button type={'button'} onClick={() => setModalActive(true)} loading={loading} className={'button'} title={'Buy Crypto now'}
                 />  */}
-
-                <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={false} className={'button'} title={'Buy'}
-                />  
-
                 <div className={styles.orderData__logoGroup}>
                     <img src={pci} alt="PCI" className={styles.pci} />
                     <img src={visa} alt="visa" className={styles.visa} />
                     <img src={mastercard} alt="mastercard" className={styles.mastercard} />
                 </div>
+                
             </div>
             <MessageBox text={error} clearMessage={() => setError(null)} />
         </div>
@@ -329,4 +313,4 @@ export default connect(
             dispatch(action_currencyes(obj));
         },
     })
-)(OrderData);
+)(OrderDataTest);
