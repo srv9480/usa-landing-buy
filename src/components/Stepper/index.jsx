@@ -29,7 +29,7 @@ function Step(props) {
                 </div>
             </div>
             {
-                props.index != 4 && <div className={styles.line}/>
+                props.index != 5 && <div className={styles.line}/>
             }
         </div>
     )    

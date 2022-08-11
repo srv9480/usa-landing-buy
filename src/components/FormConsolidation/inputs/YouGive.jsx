@@ -9,7 +9,7 @@ const YouGive = (props) => {
     return (
         <div className={styles.paymentInput} style={{marginTop: '10px'}}>
             <Input
-                label={'You give'}
+                // label={'You pay'}
                 type='number'
                 error={props.error}
                 value={props.amount}
@@ -26,7 +26,7 @@ const YouGive = (props) => {
                 disabled={props.disabled}
             />
             { props.error && <span className={styles.info} style={{color: '#ff0000'}}> {props.error} </span> }
-            { !props.error && <span className={styles.info} style={{color: 'rgba(0, 0, 0, 0.6)'}}> {props.priceOneCrypto} </span> }
+            { !props.error && <span className={styles.info} style={{color: 'rgba(0, 0, 0, 0.6)'}}> {} </span> }
         </div>
     );
 }

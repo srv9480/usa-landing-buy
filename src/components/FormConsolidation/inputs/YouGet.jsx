@@ -7,15 +7,16 @@ import styles from "./../styles.sass";
 import MenuOverlay from "@components/MenuOverlay";
 import { Input }         from '@components/Button'
 
+
 function YouGet (props) {
     const loader = true
     return (
         <div className={styles.paymentInput} style={{marginTop: '10px'}}>
       
             <Input
-                label={'You Receive'}
+                label={'You receive (estimate)'}
                 value={props.amount}
-                disabled={true}
+                disabled={false}
                 loader={loader}
             />
             <MenuOverlay

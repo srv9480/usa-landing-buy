@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./styles.scss";
 
-const ModalMy = ({ isVisible = false, title, content, footer, onClose }) => {
+function ModalMy ({ isVisible = false, title, content, footer, onClose }) {
       const keydownHandler = ({ key }) => {
             switch (key) {
                   case 'Escape':
@@ -32,6 +32,6 @@ const ModalMy = ({ isVisible = false, title, content, footer, onClose }) => {
                   </div>
             </div>
       );
-};
+}
 
 export default ModalMy;
