@@ -256,27 +256,8 @@ const OrderDataTest = (props) => {
                     loader={loadingGet}
                 />
             </div>
-            {/* <ul className={styles.networksList}>
-                 {
-                    ( networks.map(network => 
-                        <li key={network.shortName}
-                        onClick={() => setActiveNetwork(network.shortName)}
-                        className={`${activeNetwork === network.shortName && styles.networkActive}`}
-                        >{network.shortName}</li>
-                    ))
-                } 
-            </ul> */}
-            {/* <Input
-                label={'Recipient’s address'}
-                error={errorWallet}
-                value={addressWallet}
-                disabled={disabledWallet}
-                required={'required'}
-                onChange={(value) => validateWallet(value)}
-                onPaste={(value) => validateWallet(value)}
-                onBlur={(value) => validateWallet(value)}
-            /> */}
-
+          
+        
 
             <div className={styles.orderData__buttonBlock}>
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}

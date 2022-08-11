@@ -40,20 +40,6 @@ export const Phone = (props) => {
     );
 }
 
-export const Wallet = (props) => {
-    return (
-        <Input
-            label={'Recipient’s address'}
-            error={errorWallet}
-            value={addressWallet}
-            disabled={disabledWallet}
-            required={'required'}
-            onChange={(value) => validateWallet(value)}
-            onPaste={(value) => validateWallet(value)}
-            onBlur={(value) => validateWallet(value)}
-        />
-    )
-}
 
 export const Email = (props) => {
     return (
@@ -96,7 +82,7 @@ export const VerifyContact = (props) => {
             </div>
             <div className={styles.taimerBlock}>
                 {seconds > 0 ?
-                    <p>Get new code in <span> 0:{seconds >= 10 ? '' : 'null'}{seconds}</span></p>
+                    <p>Get new code in <span> 0:{seconds >= 10 ? '' : '0'}{seconds}</span></p>
                     :
                     <span className={styles.newCode} onClick={() => {
                         setSeconds(60),

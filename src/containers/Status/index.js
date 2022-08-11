@@ -31,9 +31,6 @@ class Status extends Expansion {
         this.setGetInitialStatus();
     }
 
-    componentDidUpdate() {
-        this.setGetInitialStatus();
-    }
 
     setGetInitialStatus () {
         const dataStatus = this.props.getInstanceStateStatus
