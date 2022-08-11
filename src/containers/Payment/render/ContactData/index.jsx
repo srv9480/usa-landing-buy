@@ -41,10 +41,6 @@ const ContactData = (props) => {
     const [loading, setLoading] = useState(false)
     const [contactId, setContactId] = useState(null)
 
-    const [addressWallet, setAddressWallet] = useState(null)
-    const [errorWallet, setErrorWallet] = useState(false)
-    const [disabledWallet, setDisabledWallet] = useState(false)
-
 
     useEffect(() => {
         if (query.email) {
@@ -64,17 +60,6 @@ const ContactData = (props) => {
         if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
             setErrorContact(null)
         } else setErrorContact('Incorrect email address')
-    }
-
-    function validateWallet(value) {
-        setAddressWallet(value)
-        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
-        const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
-        if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
-        else {
-            setErrorWallet(true)
-            setDisabledWallet(false)
-        }
     }
 
 
@@ -201,7 +186,7 @@ const ContactData = (props) => {
                         <path d="M0.999999 7L0.292892 6.29289C0.105355 6.48043 -1.39974e-06 6.73478 -1.34048e-06 7C-1.28123e-06 7.26522 0.105356 7.51957 0.292892 7.70711L0.999999 7ZM7.70711 1.70711C8.09763 1.31658 8.09763 0.683418 7.70711 0.292893C7.31658 -0.0976319 6.68342 -0.0976317 6.29289 0.292893L7.70711 1.70711ZM6.2929 13.7071C6.68342 14.0976 7.31659 14.0976 7.70711 13.7071C8.09763 13.3166 8.09763 12.6834 7.70711 12.2929L6.2929 13.7071ZM1.70711 7.70711L7.70711 1.70711L6.29289 0.292893L0.292892 6.29289L1.70711 7.70711ZM7.70711 12.2929L1.70711 6.29289L0.292892 7.70711L6.2929 13.7071L7.70711 12.2929Z" fill="#3463F8" />
                     </svg> Back
                 </Button>
-                <Button type={'button'} onClick={() => nextStep()} loading={loading} disabled={disableNextButton()} className={'button'}>
+                <Button type={'button'} onClick={() => nextStep(4)} loading={loading} disabled={disableNextButton()} className={'button'}>
                     {step === 'Contact' ? 'Continue' : 'Confirm'}
                 </Button>
             </div>

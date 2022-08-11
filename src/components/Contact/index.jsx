@@ -70,7 +70,7 @@ export const Email = (props) => {
 }
 
 export const VerifyContact = (props) => {
-    const [seconds, setSeconds] = useState(60)
+    const [seconds, setSeconds] = useState(10)
 
     useEffect(() => { if (seconds > 0) { setTimeout(() => setSeconds(seconds - 1), 1000); } })
 
@@ -96,7 +96,7 @@ export const VerifyContact = (props) => {
             </div>
             <div className={styles.taimerBlock}>
                 {seconds > 0 ?
-                    <p>Get new code in <span> 0:{seconds >= 10 ? '' : '0'}{seconds}</span></p>
+                    <p>Get new code in <span> 0:{seconds >= 10 ? '' : 'null'}{seconds}</span></p>
                     :
                     <span className={styles.newCode} onClick={() => {
                         setSeconds(60),
