@@ -123,7 +123,7 @@ class CardNumber extends Expansion {
     }
 
     onBlur(event) {
-        const value = event && event.target && event.target.value || this.state.valueSave;
+        const value = event?.target?.value || this.state.valueSave;
         this.validate({
             value,
             boolCallback: (bool) => {
