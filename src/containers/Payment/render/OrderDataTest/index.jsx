@@ -57,6 +57,9 @@ const OrderDataTest = (props) => {
     const [disableButton, setDisableButton] = useState(true);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    // const [modalActive, setModalActive] = useState(true);
+
+    const [isModal, setModal] = React.useState(false);
 
 
     // Подгрузка списка сетей при смене криптовалюты и установка активной сети    
