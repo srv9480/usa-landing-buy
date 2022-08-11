@@ -283,7 +283,7 @@ console.log(value);
                 {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
                 />  */}
 
-                <Button type={'button'} onClick={() => props.setStep(2)} loading={loading} disabled={false} className={'button'} title={'Buy'}
+                <Button type={'button'} onClick={() => props.setStep(2)} loading={loading} disabled={false} className={'button'} title={'Buy Now'}
                 />  
 
                 <div className={styles.orderData__logoGroup}>
