@@ -58,13 +58,15 @@
     &:last-child
         justify-content: end
     input
+        font-weight: bold
         width: 100%
         padding: 11px
-        border-radius: 13px
+        border-radius: 10px
         outline: none
         background: #F8F8F8
         border: 1px solid #DADCE0
-        height: 40px        
+        height: 100%     
+        padding: 1rem!important
         &:focus
             border: 2px solid #3463F8
             background-color: rgba(52, 99, 248, 0.1)
@@ -73,7 +75,7 @@
     label
         position: absolute
         left: 0
-        padding: 10px 0 11px 12px
+        //padding: 10px 0 11px 12px
         pointer-events: none
         font-size: 16px
         line-height: 19px
@@ -84,7 +86,7 @@
 
     input:focus + label
         color: #3463F8 !important
-        transform: translateX(-10px) translateY(-34px)
+        //transform: translateX(-10px) translateY(-34px)
         font-size: 14px
     input:valid + label
         color: rgba(0, 0, 0, 0.6)

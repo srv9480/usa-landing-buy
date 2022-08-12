@@ -4,6 +4,8 @@ import styles from "./styles.scss";
 // redux
 import { connect } from "react-redux";
 import action_getInstanceState from "@redux/actions/getInstanceState";
+//import { createRequest } from "@containers/Payment/render/OrderData"; //TODO: нужно импортировать ранее использованную функцию но с с другими setStape
+
 
 // components
 import YouGive from "@components/FormConsolidation/inputs/YouGive";
@@ -159,7 +161,6 @@ const WalletData = (props) => {
     }
 
     const validateWallet = (value) => {
-        console.log(value);
         setAddressWallet(value)
         const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
         const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
@@ -226,17 +227,7 @@ const WalletData = (props) => {
 
     return (
         <div className={styles.orderData}>
-            {/* <div className={styles.orderData__header}>
-                <span>Buy {selectedYouGet}</span>
-                <div className={styles.orderData__logoGroup}>
-                    <img src={pci} alt="PCI" className={styles.pci} />
-                    <img src={visa} alt="visa" className={styles.visa} />
-                    <img src={mastercard} alt="mastercard" className={styles.mastercard} />
-                </div>
-            </div> */}
-            <div className={styles.orderData__currencyes}>
-            </div>
-            
+            <div></div>
             <span style={{color: 'red'}}>Your Crypto Wallet</span>
             <Input
                 label={'Recipient’s address'}
@@ -249,9 +240,6 @@ const WalletData = (props) => {
                 onBlur={(value) => validateWallet(value)}
             />
             <div className={styles.orderData__buttonBlock}>
-                {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
-                {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
-                />  */}
                 <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={false} className={'button'} title={'NEXT'}
                 />
             </div>

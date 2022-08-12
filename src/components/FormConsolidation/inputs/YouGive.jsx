@@ -23,7 +23,7 @@ const YouGive = (props) => {
                 items={props.items}
                 selected={(selected) => props.selectedGive(selected)}
                 value={props.currency}
-                disabled={props.disabled}
+                //disabled={props.disabled}
             />
             { props.error && <span className={styles.info} style={{color: '#ff0000'}}> {props.error} </span> }
             { !props.error && <span className={styles.info} style={{color: 'rgba(0, 0, 0, 0.6)'}}> {} </span> }

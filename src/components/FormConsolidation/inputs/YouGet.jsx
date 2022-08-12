@@ -14,7 +14,7 @@ function YouGet (props) {
         <div className={styles.paymentInput} style={{marginTop: '10px'}}>
       
             <Input
-                label={'You receive (estimate)'}
+                label={''}
                 value={props.amount}
                 disabled={false}
                 loader={loader}

@@ -46,13 +46,20 @@
     .orderData__currencyes {
         display: block;
         justify-content: space-between;
+        .orderDataGiveContainer {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            
         .orderDataGive {
+            display: flex;
             text-align: left;
             margin-bottom: 9px;
         }
         svg {
-            margin: 15px;
+         margin-right: 1rem;
         }
+    }
     }
 
     .networksList {
@@ -60,7 +67,7 @@
         border: 1px solid #DADCE0;
         border-radius: 13px;
         padding: 8px !important;
-        margin: 8px 0 40px 0;
+        margin: 8px 0 1rem 0;
         display: flex;
         width: fit-content;
         align-self: normal;

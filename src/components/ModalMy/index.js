@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from "./styles.scss";
+import closeimg from "@assets/images/closeModal.png";
+
 
 function ModalMy ({ isVisible = false, title, content, footer, onClose }) {
       const keydownHandler = ({ key }) => {
@@ -20,9 +22,12 @@ function ModalMy ({ isVisible = false, title, content, footer, onClose }) {
             <div className={styles.modalMy} onClick={onClose}>
                   <div className={styles.modaldialogOpen} onClick={e => e.stopPropagation()}>
                         <div className={styles.modalheader}>
-                              <h3 className={styles.modaltitle}></h3>
+                              <h3 className={styles.modaltitle} style={{}}>Buy Crypto Now!</h3>
                               <span className={styles.modalclose} onClick={onClose}>
-                                    X
+                              <img
+                        src={closeimg}
+                        style={{ width: '30px' }}
+                    />
                               </span>
                         </div>
                         <div className={styles.modalbody}>
