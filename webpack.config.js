@@ -35,7 +35,7 @@ module.exports = {
             //     ]
             // },
             {
-                test: /\.(scss|sass|css)$/,
+                test: /\.(scss|sass)$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
@@ -50,6 +50,15 @@ module.exports = {
                     {
                         loader: "sass-loader",
                         options: {sourceMap: true},
+                    }
+                ]
+            },
+            {
+                test: /\.(css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
                     }
                 ]
             },
@@ -111,7 +120,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
-        port: 3000,
+        port: 3001,
         historyApiFallback: true,
     },
 };

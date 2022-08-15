@@ -1,35 +1,48 @@
-
-
 .main {
 	background-image: url("../../assets/images/backgroundMain.png");
 	background-position: top center;
 	background-repeat: no-repeat;
-	background-size: 65%;
-	width: 1920px;
-	height: 880px;
+	background-size: auto;
+	height: 800px;
+	margin-top: 30px;
+	@media (max-width: 1150px) {
+		height: 100%;	
+	}
+	
 }
+
 .mainElements {
 	display: flex;
 	justify-content: space-between;
 	max-width: 1300px;
 	margin: 0 auto;
 	padding-top: 120px;
+	@media (max-width: 1150px) {
+		flex-direction: column;
+		align-items: center;
+	}
 }
+
 .titleText {
 	max-width: 710px;
 }
+
 .titleTextUp {
 	width: 100%;
 }
+
 .titleTextDown {
 	text-align: right;
 	width: 100%;
 }
+
 .buyForm {
 	width: 471px;
 	height: 418px;
 	background: linear-gradient(125.61deg, rgba(255, 255, 255, 0.6) -3.87%, rgba(181, 197, 248, 0.33) 105.96%);
-	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 	border-radius: 41px;
+	@media (max-width: 500px) {
+		width: 100%;
+	}
 }

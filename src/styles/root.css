@@ -17,6 +17,13 @@ h1 {
   font-style: normal;
 }
 
+@media (max-width: 600px) {
+  h1{
+    font-size: 72px;
+    line-height: 80px;
+  }
+}
+
 h2 {
   font-style: normal;
   font-weight: 600;
@@ -39,6 +46,55 @@ h2 {
   align-items: center;
   max-width: 1440px;
 }
+
+.slick-prev:before {
+  content: url("../assets/images/prev-arrow.svg") !important;
+}
+
+.slick-next:before {
+  content: url("../assets/images/next-arrow.svg") !important;
+}
+
+@media (max-width: 1150px) {
+  .slick-prev:before {
+    content: "" !important;
+  }
+  .slick-next:before {
+    content: "" !important;
+  }
+}
+
+
+div[class="slick-track"] {
+  display: flex !important;
+  align-items: center !important;
+}
+
+div[class="slick-slide slick-cloned"] div div{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+div[class="slick-slide"]{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+div[class="slick-slide slick-active"]{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+div[class="slick-slide slick-active slick-current"]{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+div[class="slick-dots"]{
+  display: none !important;
+}
+
+
 
 @media(max-width: 575px) {
   .wrapper {

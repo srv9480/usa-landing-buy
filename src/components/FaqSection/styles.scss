@@ -1,0 +1,97 @@
+.tokenallocation{
+    margin-bottom: 200px;
+    align-items: center;
+    margin-top: 150px;
+    position: relative;
+}
+.headerPanel{
+        display: flex;
+        justify-content: space-between; 
+        align-items: center
+}
+.heading{
+        color: #000;
+        text-align: center;
+        width: 100%;
+}
+
+.headerFAQ{
+    display: flex;
+    
+}
+
+.headerFAQ div{
+    width: 60%;
+    @media (max-width: 1199px) {
+        width: auto;
+    }
+}
+
+.headerFAQ div:first-child{
+    width: 40%;
+    border-right: 2px solid rgba(52, 99, 248, 1);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 74px;
+    letter-spacing: 0.1em;
+    color: #3463F8;
+    padding-bottom: 50px;
+    @media (max-width: 1199px) {
+        border-right: none;
+    }
+}
+
+.sectionFAQ{
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 1199px) {
+        flex-direction: column;
+    }
+}
+
+.headerSection{
+    width: 40%;
+    border-right: 2px solid rgba(52, 99, 248, 1);
+    padding-bottom: 80px;
+    @media (max-width: 1199px) {
+        border-right: none;
+        border-bottom: 2px solid rgba(52, 99, 248, 1);
+        width: auto;
+        padding-bottom: 0px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+
+.headerSection{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 60px;
+    letter-spacing: 0.1em;
+    color: #000000;
+}
+
+.rightBlock{
+    width: 60%;
+    padding-bottom: 80px;
+    @media (max-width: 1199px) {
+        width: auto;
+    }
+}
+/* // @media screen and (max-width: 1245px) {
+//     .tokenallocation{
+//         .headerPanel{
+//             display: block;
+//             div{
+//                 margin-top: 15px;
+//                 button{
+//                     margin-top: 10px;
+//                 }
+//             }
+//     }
+//     }
+    
+    
+// } */

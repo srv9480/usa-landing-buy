@@ -1,0 +1,173 @@
+{
+    "navMenu": {
+        "buyInda": "Buy INDA",
+        "buyCrypto": "Buy crypto in Telegram",
+        "whatIs": "What is Indacoin",
+        "business": "Business"
+    },
+    "main": {
+        "header": "Buy crypto in Telegram",
+        "button": "Get started"
+    },
+    "slider": {
+        "first": "Dozens of cryptocurrencies",
+        "second": "Visa & Mastercard support",
+        "third": "170+ countries",
+        "fouth": "Telegram integration"
+    },
+    "about": {
+        "firstParagraph": "Indacoin reinvents the mobile crypto purchases and brings a new solution to the table.",
+        "secondParagraph": "Now billions of Visa and Mastercard card owners in 170+ countries can buy crypto in Telegram. Fast, safe and easy."
+    },
+    "withIndacoin":{
+        "header": "With Indacoin Bot you can:",
+        "firstBlock": {
+            "header": "Buy crypto with card",
+            "aboutText": "Buy Bitcoin as well as any other coin or token with your bank card in the safest messenger."
+        },
+        "secondBlock": {
+            "header": "Check your orders",
+            "aboutText": " Checking the order status or purchase history in the bot is as easy as tracking pizza delivery."
+        },
+        "thirdBlock": {
+            "header": "Keep up with industry news",
+            "aboutText": "The most important crypto news is handpicked and delivered right in your account every week."
+        }
+    },
+    "CryptoPurchases": {
+        "header": "Crypto purchases. Simplified.",
+        "firstParagraph": "Operating in the UK since 2014, Indacoin was always focused on creating a smooth fiat-to-crypto transition that would be available for any bank card owner. ",
+        "secondParagraph": "We continue to pursue this goal having a head start of",
+        "button": "Start now"
+    },
+    "clients": {
+        "header": "Clients are Family",
+        "leftBlock": "Link Indacoin personal account in the bot to get even more features:",
+        "rightBlock": {
+            "firstText": "Easily check your portfolio",
+            "secondText": "Unlock up to 12% cashback for every purchase",
+            "thirdText": "Get up to 40% bonus on your deposit"
+        }
+    },
+    "bonuses": {
+        "textMain": "All registered users receive a non-expiring cashback on every crypto purchase. Thanks to this bonus program, the most loyal clients can buy crypto with 0.00% fees forever.",
+        "button": "Get bonuses"
+    },
+    "bestOf": {
+        "header": "The best trust us",
+        "button": "Enable crypto payments in Telegram"
+    },
+    "faq": {
+        "header": "Frequently Asked Questions",
+        "button": {
+            "general": "General Questions",
+            "inda": "INDA token",
+            "purchase": "Purchase",
+            "commissions": "Commissions"
+        },
+        "general": {
+            "header": "GENERAL QUESTIONS",
+            "questions": [
+                {
+                    "header": "What is Indacoin?",
+                    "text": "Indacoin is one of the pioneers in Fiat-to-Crypto exchanges, and recently launched the first and only Fiat-to-DeFi gateway, where crypto believers can buy favourite DeFi tokens directly with Visa & Mastercard globally. Indacoin bridges the gap between traditional financial systems and the crypto industry, while allowing clients to get bonuses from the company's turnover. The company brings to the table 7+ years of experience in fiat-to-crypto exchanges in nearly 180 countries with 0.5M+ users and hundreds of partners on board."
+                },
+                {
+                    "header": "Do you have a solution for business?",
+                    "text": "Yes, we can enable Visa & Mastercard payments for your business with both web solutions or branded bot. Explore new possibilities with seamless fiat-to-crypto exchanges by filling this form."
+                },
+                {
+                    "header": "What crypto can I buy here?",
+                    "text": "You can buy numerous coins and tokens, for instance, you can buy Bitcoin, you can buy Ethereum or Ripple, as well as dozens of other cryptocurrencies with Visa and Mastercard."
+                },
+                {
+                    "header": "How to buy crypto in Telegram?",
+                    "text": "You need to press “Buy”, enter the amount of your purchase, plus specify your email, phone number and email address. After it, you’ll need to verify the order if that’s your first purchase or just wait for the order to be processed if you made purchases earlier. For detailed information about verification you can check here or ask for assistance in Telegram."
+                },
+                {
+                    "header": "What do I need to buy crypto with card?",
+                    "text": "To buy BTC, ETH, XRP or other tokens with a credit or debit card, you need only your bank card and a smartphone. To confirm the purchase you’ll also need to verify the order, you can check more details here or ask for help in Telegram."
+                },
+                {
+                    "header": "Will I receive tokens directly on my wallet?",
+                    "text": "Yes, the tokens you bought will be sent to your personal wallet right away. If you bought crypto in the personal account, coins will be credited in no time."
+                },
+                {
+                    "header": "Is Indacoin available worldwide?",
+                    "text": "We’re operating in nearly 180 countries, but at the moment we do not operate in the following countries: Afghanistan, American Samoa, Albania, Algeria, The Bahamas, Bangladesh, Barbados, Bolivia, Botswana, Cambodia, China, Colombia, Democratic Republic of the Congo, Ecuador, Egypt, Eritrea, Gambia, Ghana, Guinea-Bissau, Guyana, Iran, Iraq, Ivory Coast, Jamaica, Laos, Lesotho, Liberia, Mali, Mauritius, Mongolia, Morocco, Myanmar, Namibia, Nepal, Nicaragua, Niger, Nigeria, North Korea, Pakistan, Panama, Papua New Guinea, Qatar, Saudi Arabia, Somalia, Sudan, Syria, Tanzania, Trinidad and Tobago, Uganda, Vanuatu, Yemen, Zambia, Zimbabwe.However, Indacoin became available for US citizens, so right now our bot allows you to buy Bitcoin in the US as well."
+                }
+            ]
+        },
+        "inda": {
+            "header": "INDA token",
+            "questions": [
+                {
+                    "header": "What is INDA token?",
+                    "text": "INDA token is a core element of the Indacoin ecosystem that unites all the products and services available on Indacoin, IndaSwap and IndaFi. It is a multichain asset that is currently available on Binance Smart Chain, Ethereum and Avalanche. INDA token demand is backed by the operational activity of our companies, thus we have every reason to believe that demand for INDA token will exceed the initial supply 20X in the first three years."
+                },
+                {
+                    "header": "How can I use INDA token?",
+                    "text": "INDA holders can buy crypto with 0.00% fees on Indacoin and open new ways of getting passive income. With the further development of the Indacoin ecosystem, INDA will unlock the access to the new features, for instance, loans and crypto invoicing."
+                },
+                {
+                    "header": "On what blockchain INDA token is deployed?",
+                    "text": "INDA token is available on Binance Smart Chain, Ethereum and Avalanche."
+                },
+                {
+                    "header": "What is the address of INDA smart contract?",
+                    "text": "Binance Smart Chain:  https://bscscan.com/address/0xC878A79B63A41a831E469AE1A830A765eFd9d468#code Ethereum: https://etherscan.io/address/0x433d86336db759855a66ccabe4338313a8a7fc77 Avalanche: https://cchain.explorer.avax.network/address/0x791FD27ef5ea8deE4746A1b2A1b95b6247f67b7D/read-contract"
+                }
+            ]
+        },
+        "purchase": {
+            "header": "PURCHASE",
+            "questions": [
+                {
+                    "header": "How fast will my cryptocurrency be sent?",
+                    "text": "Usually, it takes about 30-60 minutes after you make an order or complete verification (if it’s the first time you use the card on Indacoin)."
+                },
+                {
+                    "header": "What is the minimum for the purchase?",
+                    "text": "The minimum for the purchase is $50."
+                },
+                {
+                    "header": "What are the limits for buying crypto on Indacoin?",
+                    "text": "The maximum limit for the first purchase is $3K, while the total limit for the first 3 days is $6K. The overall limit for the first week is $15K, and for the first month it equals $30K. Later the maximum limit per month will be upgraded to $50K."
+                },
+                {
+                    "header": "What type of cards are accepted?",
+                    "text": "At the moment we accept only Visa and Mastercard with the 3D secure option."
+                },
+                {
+                    "header": "What is 3D secure?",
+                    "text": "3D Secure technology consists of the programs Verified by Visa and MasterCard SecureCode. After you enter your credit card details in our online store, a new window will appear, requesting your personal security code. The bank card issuer will authenticate the transaction within seconds, as well as confirm that you are the individual making the purchase."
+                },
+                {
+                    "header": "I have problems with the order, what should I do? ",
+                    "text": "Please ask for help via support@indacoin.com or in Telegram."
+                },
+                {
+                    "header": "My order was declined by the bank, what should I do?",
+                    "text": "You need to contact your bank and ask for the reason for the decline, perhaps they can lift the restriction so a purchase can be made. Please, also check if crypto purchases are permitted by your bank and your bank card is 3D secure. You can also contact Indacoin support team via support@indacoin.com or in Telegram for assistance."
+                }
+            ]
+        },
+        "commissions": {
+            "header": "COMMISSIONS",
+            "questions": [
+                {
+                    "header": "What is your fee?",
+                    "text": "Our commission includes bank fees, payment gateway fees and blockchain network fees. In total, it equals 3.5-5% depending on the exact bank and gateway. In any case, in our calculator you can see the approximate amount of cryptocurrency you will receive, all fees included."
+                },
+                {
+                    "header": "How much will I be charged for the transaction?",
+                    "text": "You will be charged only the amount you specify while making an order. All fees are already included in that amount, we won’t charge anything extra."
+                },
+                {
+                    "header": "Do you have any discounts?",
+                    "text": "We have a special loyalty program for our clients, you can unlock purchases with up to 0.00% fees and get up to 40% bonus on your deposit. Please click here to learn more about our bonuses."
+                }
+            ]
+        }
+    }
+}

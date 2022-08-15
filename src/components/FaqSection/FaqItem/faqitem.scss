@@ -1,0 +1,33 @@
+.questionBlock{
+    padding: 20px;
+}
+
+.questionBlock div{
+    border-bottom: 1.5px solid #3463F8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.questionBlock div p{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 36px;
+    color: #000000;
+    margin-left: 5px;
+}
+
+.answerBlock{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.answerBlock p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.1em;
+    color: #000000;
+}

@@ -7,7 +7,15 @@ import { connect } from "react-redux";
 import FullscreenLoader from "@containers/FullscreenLoader";
 import { PaymentContainer } from "@containers/Payment/index.jsx";
 import ModalMy from "../../components/ModalMy";
+import Header from "@components/Header";
+import WhyIndacoin from "@components/WhyIndacoin";
 import Button from "@components/Button";
+import SimpleSlide from "../../components/SliderTest";
+import Partners from "@components/Partners";
+import ShouldBuyBlock from "@components/ShouldBuyBlock";
+import StepsBlock from "@components/StepsBlock";
+import FaqSection from "@components/FaqSection";
+import FooterBlock from "@components/FooterBlock";
 import OrderDataTest from "../../containers/Payment/render/OrderDataTest";
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
@@ -28,15 +36,16 @@ function Paymentpage(props) {
 
     return (
         <>
+            <Header />
             {
-            !render ? <FullscreenLoader /> :
+                !render ? <FullscreenLoader /> :
                     <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>
                         {step === 1 && <section>
                             <div></div>
                             <div className={styles.main}>
 
-                                <div className={styles.mainElements}>
-                                    <div className={styles.titleText}>
+                                <div id="section1" className={styles.mainElements}>
+                                    <div id="section1" className={styles.titleText}>
                                         <div className={styles.titleTextUp}>
                                             <h1>Buy crypto <br />with credit card</h1>
                                         </div>
@@ -45,12 +54,12 @@ function Paymentpage(props) {
                                         </div>
                                     </div>
                                     <div className={styles.buyForm}>
-                                    <OrderDataTest 
-                                                setValueSelected={setValueSelected} 
-                                                setCurrencyGive={setCurrencyGive}
-                                                setCurrencyGet={setCurrencyGet}
-                                                setValueGet={setValueGet}
-                                                />
+                                        <OrderDataTest
+                                            setValueSelected={setValueSelected}
+                                            setCurrencyGive={setCurrencyGive}
+                                            setCurrencyGet={setCurrencyGet}
+                                            setValueGet={setValueGet}
+                                        />
                                         <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
 
                                     </div>
@@ -61,17 +70,28 @@ function Paymentpage(props) {
                             isVisible={isModal}
                             title={"Buy Crypto"}
                             content={
-                                <PaymentContainer 
-                                    valueSelected={valueSelected} 
+                                <PaymentContainer
+                                    valueSelected={valueSelected}
                                     currencyGive={currencyGive}
                                     currencyGet={currencyGet}
                                     valueGet={valueGet}
                                     step={(step) => setStep(step)}
-                                    />}
+                                />}
                             onClose={() => setModal(false)}
                         />
-                </div>    
+                    </div>
             }
+            <div className='wrapper'>
+                <div style={{ width: "100%" }}>
+                    <WhyIndacoin />
+                    <SimpleSlide />
+                    <Partners />
+                    <ShouldBuyBlock />
+                    <StepsBlock />
+                    <FaqSection />
+                </div>
+            </div>
+            <FooterBlock />
         </>
     )
 }
