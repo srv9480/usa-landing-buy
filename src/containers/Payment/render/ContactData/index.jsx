@@ -59,7 +59,6 @@ const ContactData = (props) => {
     }, [typeContact])
 
     function validateEmail(value) {
-        console.log(value)
         setValueEmail(value)
         if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
             setErrorContact(null)
@@ -108,7 +107,7 @@ const ContactData = (props) => {
         }
     }
     const getNewCode = () => {
-        ContactRequest.Sendcode(props.getInstanceState.value_tradeUserId, props.contactId)
+        ContactRequest.Sendcode(props.getInstanceState.value_tradeUserId, contactId)
             .then((response) => { console.log(response) })
             .catch(error => { console.log(error) })
     }
@@ -132,7 +131,7 @@ const ContactData = (props) => {
                     else setErrorContact('internal Server Error')
                     setLoading(false)
                 })
-        } else props.setStep(3)
+        } else props.setStep(4)
     }
 
     function backStep() {
@@ -143,7 +142,8 @@ const ContactData = (props) => {
             props.setStep(1)
         }
     }
-    function disableNextButton(bool) {
+    function disableNextButton(bool){
+        if (bool == "verify") return false
         if (loading) return true
         if (step === 'Contact' && typeContact === 'Email' && valueEmail && !errorContact) return false
         if (step === 'Contact' && typeContact === 'Phone' && valuePhone && !errorContact) return false
