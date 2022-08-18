@@ -10,10 +10,10 @@ import { Input }         from '@components/Button'
 function YouGet (props) {
     const loader = true
     return (
-        <div className={styles.paymentInput} style={{marginTop: '10px'}}>
+        <div className={styles.paymentInput} style={{marginTop: '50px'}}>
       
             <Input
-                label={'You Receive'}
+                label={'You receive (estimate)'}
                 value={props.amount}
                 disabled={true}
                 loader={loader}
