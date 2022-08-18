@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
+
 // styles
 import styles from "./styles.scss";
+
 // redux
 import { connect } from "react-redux";
+
+// Import images
+import mastercard from '@assets/images/icons/mastercard.svg'
+import pci from '@assets/images/icons/pci.svg'
+import visa from '@assets/images/icons/visa.png'
+
 // containers
 import FullscreenLoader from "@containers/FullscreenLoader";
 import { PaymentContainer } from "@containers/Payment/index.jsx";
@@ -17,6 +25,7 @@ import StepsBlock from "@components/StepsBlock";
 import FaqSection from "@components/FaqSection";
 import FooterBlock from "@components/FooterBlock";
 import OrderDataTest from "../../containers/Payment/render/OrderDataTest";
+
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -60,8 +69,13 @@ function Paymentpage(props) {
                                             setCurrencyGet={setCurrencyGet}
                                             setValueGet={setValueGet}
                                         />
-                                        <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
 
+                                        <div style={{ display: "flex", justifyContent: "space-around" }}>
+                                            <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
+                                            {/*<img src={pci} alt="PCI" className={styles.pci} />
+                                            <img src={visa} alt="visa" className={styles.visa} />
+                        <img src={mastercard} alt="mastercard" className={styles.mastercard} />*/}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
