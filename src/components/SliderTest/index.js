@@ -39,11 +39,11 @@ export default class SimpleSlide extends Component {
             customPaging: function (i) {
                 if (i === state.dotIndex)
                     return (
-                        <img style={{display: "none"}} src={rectangleDotActiveGr} width={20} height={15} />
+                        <img style={{ display: "none" }} src={rectangleDotActiveGr} width={20} height={15} />
                     );
                 else
                     return (
-                        <img style={{display: "none"}} src={rectangleDotLight} width={20} height={15} />
+                        <img style={{ display: "none" }} src={rectangleDotLight} width={20} height={15} />
                     );
             },
             dotsClass: "slick-dots slick-thumb",
@@ -64,11 +64,11 @@ export default class SimpleSlide extends Component {
                         customPaging: function (i) {
                             if (i === state.dotIndex)
                                 return (
-                                    <img style={{display: "none"}} src={rectangleDotActiveGr} width={20} height={15} />
+                                    <img style={{ display: "none" }} src={rectangleDotActiveGr} width={20} height={15} />
                                 );
                             else
                                 return (
-                                    <img style={{display: "none"}} src={rectangleDotLight} width={20} height={15} />
+                                    <img style={{ display: "none" }} src={rectangleDotLight} width={20} height={15} />
                                 );
                         },
                     }
@@ -107,26 +107,39 @@ export default class SimpleSlide extends Component {
         };
         return (
             <div style={{ maxWidth: 1500, margin: "0 auto", paddingLeft: "80", marginBottom: 200 }}>
-                <div className={styles.headerSlide} style={{width: "100%", display: "flex", justifyContent: "center", marginBottom: 25}}><h2>The best trust us</h2></div>
+                <div className={styles.headerSlide} style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: 25 }}><h2>The best trust us</h2></div>
                 <Slider {...settings}>
-                    <div style={{display: "flex", justifyContent: "center"}}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
 
-                        <img src={waves} alt="aves" />
+                        <a href="https://coinmarketcap.com/currencies/waves/">
+                            <img src={waves} alt="waves" />
+                        </a>
                     </div>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <img src={entrepreneur} alt="entrepreneur" />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+
+                        <a href="https://www.entrepreneur.com/">
+                            <img src={entrepreneur} alt="entrepreneur" />
+                        </a>
                     </div>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <img src={cointelegraph} alt="cointelegraph" />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <a href="https://cointelegraph.com/">
+                            <img src={cointelegraph} alt="cointelegraph" />
+                        </a>
                     </div>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <img src={changelly} alt="changelly" />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <a href="https://changelly.com/">
+                            <img src={changelly} alt="changelly" />
+                        </a>
                     </div>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <img src={yahoo} alt="yahoo" />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <a href="https://finance.yahoo.com/">
+                            <img src={yahoo} alt="yahoo" />
+                        </a>
                     </div>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <img src={coingeek} alt="coingeek" />
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <a href="https://coingeek.com/">
+                            <img src={coingeek} alt="coingeek" />
+                        </a>
                     </div>
                 </Slider>
             </div>

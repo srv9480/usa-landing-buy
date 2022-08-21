@@ -33,12 +33,14 @@
     &.filled
         background: #3463F8
         color: #fff
-        border-radius: 13px
+        border-radius: 3.125rem
         padding: 10px 20px
         font-size: 16px
         line-height: 20px
         font-weight: 700
-        min-width: 208px
+        min-width: 200px
+        width: 100%
+        height: 60px
         &:disabled
             background: linear-gradient(0deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.58)), #3463F8
             &:hover
@@ -59,12 +61,14 @@
         justify-content: end
     input
         width: 100%
-        padding: 11px
+        padding: 15px
         border-radius: 13px
         outline: none
+        font-size: 0.935rem
+        font-weight: 500
         background: #F8F8F8
         border: 1px solid #DADCE0
-        height: 40px        
+        height: 60px    
         &:focus
             border: 2px solid #3463F8
             background-color: rgba(52, 99, 248, 0.1)
@@ -84,7 +88,7 @@
 
     input:focus + label
         color: #3463F8 !important
-        transform: translateX(-10px) translateY(-34px)
+        // transform: translateX(-10px) translateY(-34px)
         font-size: 14px
     input:valid + label
         color: rgba(0, 0, 0, 0.6)

@@ -283,11 +283,11 @@ const OrderDataTest = (props) => {
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
                 {/* <Button type={'button'} onClick={() => setModalActive(true)} loading={loading} className={'button'} title={'Buy Crypto now'}
                 />  */}
-                <div className={styles.orderData__logoGroup}>
+                {/* <div className={styles.orderData__logoGroup}>
                     <img src={pci} alt="PCI" className={styles.pci} />
                     <img src={visa} alt="visa" className={styles.visa} />
                     <img src={mastercard} alt="mastercard" className={styles.mastercard} />
-                </div>
+                </div> */}
                 
             </div>
             <MessageBox text={error} clearMessage={() => setError(null)} />

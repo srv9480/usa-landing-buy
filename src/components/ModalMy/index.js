@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./styles.scss";
-import CloseButton from 'react-bootstrap/CloseButton';
+import closeimg from "@assets/images/closeModal.png";
+
 const ModalMy = ({ isVisible = false, title, content, footer, onClose }) => {
       const keydownHandler = ({ key }) => {
             switch (key) {
@@ -20,10 +21,14 @@ const ModalMy = ({ isVisible = false, title, content, footer, onClose }) => {
             <div className={styles.modalMy} onClick={onClose}>
                   <div className={styles.modaldialogOpen} onClick={e => e.stopPropagation()}>
                         <div className={styles.modalheader}>
-                              <h3 className={styles.modaltitle} style={{textAlign: "center", width: "295px", margin: "0 auto", color: "#ec347a", fontWeight: "600"}}>Your Payment Details
-</h3>
+                              <h3 className={styles.modaltitle}></h3>
                               <span className={styles.modalclose} onClick={onClose}>
-                              <CloseButton />
+                            
+                              <img
+                              src={closeimg}
+                              style={{ width: '25px' }}
+                              />
+                            
                               </span>
                         </div>
                         <div className={styles.modalbody}>
