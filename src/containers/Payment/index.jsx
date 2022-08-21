@@ -42,7 +42,7 @@ function renderForm(step, setStep, valueSelected, currencyGive, currencyGet, val
         )
 
         case 3: return (
-            <ContactData setStep = {(step) => setStep(step)}/>            
+            <WalletData valueGet={valueGet} currencyGet={currencyGet} currencyGive={currencyGive} valueSelected={valueSelected} setStep = {(step) => setStep(step)}/>            
         )
 
         case 4: return (

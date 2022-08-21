@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.scss";
 // redux
 import { connect } from "react-redux";
+import "react-bootstrap"
+
 // containers
 import FullscreenLoader from "@containers/FullscreenLoader";
 import { PaymentContainer } from "@containers/Payment/index.jsx";
@@ -16,7 +18,9 @@ import ShouldBuyBlock from "@components/ShouldBuyBlock";
 import StepsBlock from "@components/StepsBlock";
 import FaqSection from "@components/FaqSection";
 import FooterBlock from "@components/FooterBlock";
-import OrderDataTest from "../../containers/Payment/render/OrderDataTest";
+import FormSteps from "@containers/FormSteps.jsx";
+import OrderDataTest from "@containers/Payment/render/OrderDataTest";
+import FormSteps from '@containers/FormSteps';
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -39,8 +43,8 @@ function Paymentpage(props) {
             <Header />
             {
                 !render ? <FullscreenLoader /> :
-                    <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>
-                        {step === 1 && <section>
+                    <div>
+                        <section>
                             <div></div>
                             <div className={styles.main}>
 
@@ -54,29 +58,20 @@ function Paymentpage(props) {
                                         </div>
                                     </div>
                                     <div className={styles.buyForm}>
-                                        <OrderDataTest
-                                            setValueSelected={setValueSelected}
-                                            setCurrencyGive={setCurrencyGive}
-                                            setCurrencyGet={setCurrencyGet}
-                                            setValueGet={setValueGet}
-                                        />
-                                        <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
+                                    <OrderDataTest />
+
+                                        
+                                        <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button> 
 
                                     </div>
                                 </div>
                             </div>
-                        </section>}
+                        </section>
                         <ModalMy
                             isVisible={isModal}
                             title={"Buy Crypto"}
                             content={
-                                <PaymentContainer
-                                    valueSelected={valueSelected}
-                                    currencyGive={currencyGive}
-                                    currencyGet={currencyGet}
-                                    valueGet={valueGet}
-                                    step={(step) => setStep(step)}
-                                />}
+                                <FormSteps />}
                             onClose={() => setModal(false)}
                         />
                     </div>

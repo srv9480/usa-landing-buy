@@ -9,8 +9,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      //background-color: #1a1a1a;
-     /// opacity: 0.3;
+      background-color: #1a1a1a;
+      opacity: 1;
       animation-name: appear;
       animation-duration: 300ms;
     }
@@ -18,16 +18,16 @@
     .modaldialogOpen {
       opacity: 1!important;
       width: 100%;
-      max-width: 480px;
+      max-width: 450px;
       background: rgb(255, 255, 255);
       position: relative;
-      margin: 0 20px;
+      margin: 0 10px;
       max-height: calc(100vh - 40px);
       text-align: left;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      border-radius: 40px;
+      border-radius: 25px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       -webkit-animation-name: animatetop;
       -webkit-animation-duration: 0.4s;
@@ -43,10 +43,10 @@
       display: flex;
       align-items: center;
       padding: 1rem;
+      margin-bottom: 2.1rem;
     }
     
     .modalheader {
-      border-bottom: 1px solid #dbdbdb;
       justify-content: space-between;
     }
     
@@ -84,7 +84,7 @@
     }
     
     .modalcontent {
-      padding: 1rem;
+      padding: 0rem;
     }
     
     @keyframes appear {
