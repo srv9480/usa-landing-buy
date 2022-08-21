@@ -18,9 +18,9 @@ import ShouldBuyBlock from "@components/ShouldBuyBlock";
 import StepsBlock from "@components/StepsBlock";
 import FaqSection from "@components/FaqSection";
 import FooterBlock from "@components/FooterBlock";
-import FormSteps from "@containers/FormSteps.jsx";
 import OrderDataTest from "@containers/Payment/render/OrderDataTest";
-import FormSteps from '@containers/FormSteps';
+
+import FormSteps from './../../containers/FormSteps';
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
     const [loading, setLoading] = useState(false);
