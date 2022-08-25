@@ -5,6 +5,8 @@ import StepOne from "@components/Forms/StepOne";
 import StepTwo from "@components/Forms/StepTwo";
 import Step3 from "@components/Forms/Step3";
 import Step4 from "@components/Forms/Step4";
+import StepErrorr from "@components/Forms/StepErrorr";
+import StepSuccess from "@components/Forms/StepSuccess";
 //import StepThree from "@components/Forms/StepThree";
 import Final from "@components/Forms/Final";
 import React from "react";
@@ -75,7 +77,7 @@ function FormSteps () {
           <Container>
             <Row>
               <Col md={{ span: 12, border: "none" }} className="custom-margin">      
-                <StepOne
+                <StepErrorr
                   nextStep={nextStep}
                   handleFormData={handleInputData}
                   values={formData}
@@ -166,8 +168,26 @@ function FormSteps () {
       );
 
 
+      case 5:
+        return (
+          <div className="AppA">
+            <Container>
+              <Row>
+                <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                  <StepSuccess
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    handleFormData={handleInputData}
+                    values={formData}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        );
 
-    case 5:
+
+    case 6:
       return (
         <div className="AppA">
           <Container>
