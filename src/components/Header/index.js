@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./styles.scss";
 import logo from "../../assets/images/LogoHeader.svg";
-import close from "../../assets/images/close.svg";
-import menu from "../../assets/images/menu.svg";
+import modalclose from "../../assets/images/modalclose.png";
+import openMenuIcon from "../../assets/images/openMenuIcon.png";
 import { Link, animateScroll as scroll } from "react-scroll";
 
 const Header = () => {
@@ -18,11 +18,11 @@ const Header = () => {
         </div>
         {mobile ? (
           <div className={styles.menuMobile} onClick={() => setMobile(false)}>
-            <img src={close} />
+            <img src={modalclose} width={30} />
           </div>
         ) : (
           <div className={styles.menuMobile} onClick={() => setMobile(true)}>
-            <img src={menu} />
+            <img src={openMenuIcon} width={20}/>
           </div>
         )}
         <div className={styles.headerMenu}>

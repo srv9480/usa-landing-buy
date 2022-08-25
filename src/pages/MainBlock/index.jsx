@@ -38,6 +38,7 @@ function Paymentpage(props) {
     const [currencyGive, setCurrencyGive] = useState("USD")
     const [currencyGet, setCurrencyGet] = useState("BTC")
     const [valueGet, setValueGet] = useState(0)
+    const [data, setData] = useState({})
 
     useEffect(() => {
         if (props.currencyes) {
@@ -45,6 +46,7 @@ function Paymentpage(props) {
         }
     }, [props]);
 
+    console.log(data)
     return (
         <>
             <Header />
@@ -70,16 +72,12 @@ function Paymentpage(props) {
                                             setCurrencyGive={setCurrencyGive}
                                             setCurrencyGet={setCurrencyGet}
                                             setValueGet={setValueGet}
+                                            setData={setData}
+                                            setModal={setModal}
+                                            loading={loading}
                                         />
 
-                                        <div style={{ display: "flex", justifyContent: "space-around" }}>
-                                            <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'} style={{ width: "423px", margin: "0 auto" }}>
-                                                Buy Crypto Now
-                                            </Button>
-                                            {/*<img src={pci} alt="PCI" className={styles.pci} />
-                                            <img src={visa} alt="visa" className={styles.visa} />
-                                            <img src={mastercard} alt="mastercard" className={styles.mastercard} />*/}
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +86,8 @@ function Paymentpage(props) {
                             isVisible={isModal}
                             title={"Buy Crypto"}
                             content={
-                                <FormSteps />
+                                <FormSteps data={data}
+                                setData={setData}/>
                                  // <PaymentContainer
                                  //     valueSelected={valueSelected}
                                  //     currencyGive={currencyGive}

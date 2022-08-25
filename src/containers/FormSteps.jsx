@@ -21,7 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //       )
 
 
-function FormSteps () {
+function FormSteps (props) {
   //state for steps
   const [step, setstep] = useState(1);
 
@@ -46,6 +46,10 @@ function FormSteps () {
   // function for going to next step by increasing step state by 1
   const nextStep = () => {
     setstep(step + 1);
+    props.setData(((prevState) => ({
+      ...prevState,
+      formData
+    })))
   };
 
   // function for going to previous step by decreasing step state by 1
