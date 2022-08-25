@@ -87,14 +87,18 @@ function Paymentpage(props) {
                             title={"Buy Crypto"}
                             content={
                                 <FormSteps data={data}
-                                setData={setData}/>
-                                 // <PaymentContainer
-                                 //     valueSelected={valueSelected}
-                                 //     currencyGive={currencyGive}
-                                 //     currencyGet={currencyGet}
-                                 //     valueGet={valueGet}
-                                 //     step={(step) => setStep(step)}
-                                 // />
+                                setData={setData}
+                                valueSelected={valueSelected}
+                                     currencyGive={currencyGive}
+                                     currencyGet={currencyGet}
+                                     valueGet={valueGet}/>
+                                //  <PaymentContainer
+                                //      valueSelected={valueSelected}
+                                //      currencyGive={currencyGive}
+                                //      currencyGet={currencyGet}
+                                //      valueGet={valueGet}
+                                //      step={(step) => setStep(step)}
+                                //  />
                             }
                             onClose={() => setModal(false)}
                         />

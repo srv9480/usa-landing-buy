@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const Final = ({ values }) => {
+const Final = ({ values, data }) => {
   //destructuring the object from values
   const {
     firstName,
@@ -24,7 +24,7 @@ const Final = ({ values }) => {
       <Card style={{ marginTop: 100, textAlign: "left" }}>
         <Card.Body>
           <p>
-            <strong>First Name :</strong> {firstName}{" "}
+            <strong>First Name :</strong> {data.formData.firstName}{" "}
           </p>
           <p>
             <strong>Last Name :</strong> {lastName}{" "}

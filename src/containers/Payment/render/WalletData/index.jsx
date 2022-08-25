@@ -21,7 +21,6 @@ import pci from '@assets/images/icons/pci.svg'
 import visa from '@assets/images/icons/visa.png'
 
 const WalletData = (props) => {
-
     // Query параметры из URL
     const [searchParams] = useSearchParams();
     const query = [...searchParams.entries()]
@@ -161,6 +160,7 @@ const WalletData = (props) => {
     const validateWallet = (value) => {
         console.log(value);
         setAddressWallet(value)
+       
         const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
         const valueRegExp = youGet.networks.find((network) => network.shortName === activeNetwork) || youGet.networks[0]
         if (valueRegExp && RegExp(valueRegExp.addressVerificationRegExp).test(value)) setErrorWallet(false)
@@ -215,13 +215,26 @@ const WalletData = (props) => {
                         value_destinationAddress: addressWallet
 
                     });
-                    props.setStep(3)
+                    props.setStep(2)
+                    props.setFormData(((prevState) => ({
+                        ...prevState,
+                        addressWallet
+                      })))
                 } else {
                     setError('Internal server Error. Please contact technical support')
                 }
             })
-        } else if (verify_contact) props.setStep(4)
-        else { props.setStep(3) }
+        } else if (verify_contact) {
+            props.setStep(2) 
+            props.setFormData(((prevState) => ({
+                ...prevState,
+                walletAddress: addressWallet
+              })))}
+        else { props.setStep(2) 
+            props.setFormData(((prevState) => ({
+                ...prevState,
+                walletAddress: addressWallet
+              })))}
     }
 
     return (
