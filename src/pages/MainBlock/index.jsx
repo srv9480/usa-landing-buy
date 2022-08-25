@@ -25,6 +25,8 @@ import StepsBlock from "@components/StepsBlock";
 import FaqSection from "@components/FaqSection";
 import FooterBlock from "@components/FooterBlock";
 import OrderDataTest from "../../containers/Payment/render/OrderDataTest";
+//import FormSteps from "../../../FormSteps";
+import FormSteps from './../../containers/FormSteps';
 
 function Paymentpage(props) {
     const [disableButton, setDisableButton] = useState(true);
@@ -49,7 +51,7 @@ function Paymentpage(props) {
             {
                 !render ? <FullscreenLoader /> :
                     <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>
-                        {step === 1 && <section>
+                       <section>
                             <div></div>
                             <div className={styles.main}>
 
@@ -71,26 +73,30 @@ function Paymentpage(props) {
                                         />
 
                                         <div style={{ display: "flex", justifyContent: "space-around" }}>
-                                            <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'}>Buy Crypto Now</Button>
+                                            <Button type={'button'} onClick={() => setModal(true)} loading={loading} disabled={false} className={'button'} style={{ width: "423px", margin: "0 auto" }}>
+                                                Buy Crypto Now
+                                            </Button>
                                             {/*<img src={pci} alt="PCI" className={styles.pci} />
                                             <img src={visa} alt="visa" className={styles.visa} />
-                        <img src={mastercard} alt="mastercard" className={styles.mastercard} />*/}
+                                            <img src={mastercard} alt="mastercard" className={styles.mastercard} />*/}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </section>}
+                        </section>
                         <ModalMy
                             isVisible={isModal}
                             title={"Buy Crypto"}
                             content={
-                                <PaymentContainer
-                                    valueSelected={valueSelected}
-                                    currencyGive={currencyGive}
-                                    currencyGet={currencyGet}
-                                    valueGet={valueGet}
-                                    step={(step) => setStep(step)}
-                                />}
+                                <FormSteps />
+                                 // <PaymentContainer
+                                 //     valueSelected={valueSelected}
+                                 //     currencyGive={currencyGive}
+                                 //     currencyGet={currencyGet}
+                                 //     valueGet={valueGet}
+                                 //     step={(step) => setStep(step)}
+                                 // />
+                            }
                             onClose={() => setModal(false)}
                         />
                     </div>
@@ -114,3 +120,13 @@ export default connect(
         currencyes: state.currencyes
     })
 )(Paymentpage);
+
+
+
+                                // <PaymentContainer
+                                //     valueSelected={valueSelected}
+                                //     currencyGive={currencyGive}
+                                //     currencyGet={currencyGet}
+                                //     valueGet={valueGet}
+                                //     step={(step) => setStep(step)}
+                                // />

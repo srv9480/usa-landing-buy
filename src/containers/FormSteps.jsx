@@ -3,11 +3,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import StepOne from "@components/Forms/StepOne";
 import StepTwo from "@components/Forms/StepTwo";
+import Step3 from "@components/Forms/Step3";
+import Step4 from "@components/Forms/Step4";
+//import StepThree from "@components/Forms/StepThree";
 import Final from "@components/Forms/Final";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import OrderData from "./Payment/render/OrderData"
 //import OrderDataTest from "./Payment/render/OrderDataTest";
+//import StepTwotest from "@components/Forms/StepThreetrue";
 
 
 // function renderForm(step, setStep, valueSelected, currencyGive, currencyGet, valueGet) {
@@ -17,7 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //       )
 
 
-function FormSteps (valueSelected, currencyGive, currencyGet, valueGet) {
+function FormSteps () {
   //state for steps
   const [step, setstep] = useState(1);
 
@@ -31,7 +35,6 @@ function FormSteps (valueSelected, currencyGive, currencyGet, valueGet) {
     cardMM: "",
     cardYYYY: "",
     cardCVV: "",
-
     stAddressOne: "",
     stAddressTwo: "",
     country: "",
@@ -102,8 +105,69 @@ function FormSteps (valueSelected, currencyGive, currencyGet, valueGet) {
           </Container>
         </div>
       );
+      // Степ с круглой стрелкой, передаются {adressWallet} и {cardNumber}
+      // case 3:
+      //   return (
+
+      //     <div className="AppA">
+      //       <Container>
+      //         <Row>
+      //           <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+      //             <StepTwotest
+      //             nextStep={nextStep}
+      //             prevStep={prevStep}
+      //             //value={formData}
+      //             //handleFormData={handleInputData}                                   
+      //             />
+      //           </Col>
+      //         </Row>
+      //       </Container>
+
+      //     </div>
+      //   );
     // Only formData is passed as prop to show the final value at form submit
+
+
     case 3:
+      return (
+        <div className="AppA">
+          <Container>
+            <Row>
+              <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                <Step3
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+
+
+      case 4:
+      return (
+        <div className="AppA">
+          <Container>
+            <Row>
+              <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                <Step4
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+
+
+
+    case 5:
       return (
         <div className="AppA">
           <Container>
@@ -115,6 +179,7 @@ function FormSteps (valueSelected, currencyGive, currencyGet, valueGet) {
           </Container>
         </div>
       );
+      
     // default case to show nothing
     default:
       return <div className="AppA"></div>;

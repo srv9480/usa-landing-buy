@@ -30,10 +30,11 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
       <Card style={{ marginTop: 0, border: "none" }}>
         <Card.Body>
 
-          <Form onSubmit={submitFormData}>
+          <Form onSubmit={submitFormData}> 
+          <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Detals</div>
             <div style={{ display: "flex", justifyContent: "space-between", maxWidth: "387", width: "100%"}}>
               <Form.Group className="mb-4">
-              
+             
                 <Form.Control
                   style={{
                     border: error ? "2px solid red" : "",

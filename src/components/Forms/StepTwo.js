@@ -32,6 +32,7 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
       <Card style={{ marginTop: 0, border: "none" }}>
         <Card.Body>
           <Form onSubmit={submitFormData}>
+          <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Detals</div>
             <Form.Group className="mb-3">
 
               <Form.Control

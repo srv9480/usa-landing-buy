@@ -237,7 +237,7 @@ const WalletData = (props) => {
             <div className={styles.orderData__currencyes}>
             </div>
             
-            <span style={{color: 'red'}}>Your Crypto Wallet</span>
+            <span style={{ fontSize: '20px', textAlign: "center", fontWeight: '600', color: "red", marginBottom: "100px" }}>Your Crypto Wallet</span>
             <Input
                 label={'Recipient’s address'}
                 error={errorWallet}

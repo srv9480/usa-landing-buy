@@ -7,7 +7,7 @@ import { Input }         from '@components/Button'
 
 const YouGive = (props) => {
     return (
-        <div className={styles.paymentInput} style={{marginTop: '50px'}}>
+        <div className={styles.paymentInput} style={{marginTop: '0px'}}>
             <Input
                 label={'You pay'}
                 type='number'
