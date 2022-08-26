@@ -11,9 +11,11 @@
     width: 75%; 
     display: flex; 
     justify-content: center;
+    
     @media screen and (max-width: 1050px) {
         justify-content: space-between !important;
         align-items: center;
+        padding: 38px 0px 25px;
     }
 }
 
@@ -21,6 +23,10 @@
     width: 40%;
     padding: 38px 0px 25px;
     border-right: 1.5px solid #3463F8;
+    @media screen and (max-width: 1050px) {
+        padding: 0px;
+        border-right: none;
+    }
     @media (max-width: 600px) {
         border-right: none;
     }

@@ -212,6 +212,7 @@ const OrderDataTest = (props) => {
     }
 
     return (
+        <>
         <div className={styles.orderData}>
             {/* <div className={styles.orderData__header}>
                 <span>Buy {selectedYouGet}</span>
@@ -292,6 +293,23 @@ const OrderDataTest = (props) => {
             </div>
             <MessageBox text={error} clearMessage={() => setError(null)} />
         </div>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <Button type={'button'} onClick={() => {
+            props.setModal(true)
+            props.setData({
+                selectedYouGive: selectedYouGive,
+                amountGive: amountGive,
+                selectedYouGet: selectedYouGet,
+                amountGet: amountGet
+            })
+            }} loading={props.loading} disabled={false} className={'button'} style={{ width: "423px", margin: "0 auto" }}>
+            Buy Crypto Now
+        </Button>
+        {/*<img src={pci} alt="PCI" className={styles.pci} />
+        <img src={visa} alt="visa" className={styles.visa} />
+        <img src={mastercard} alt="mastercard" className={styles.mastercard} />*/}
+    </div>
+    </>
     )
 }
 
