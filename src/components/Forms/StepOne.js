@@ -9,7 +9,9 @@ import validator from "validator";
 const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
-
+  const normalizeCardNumber = (value) => {
+    return value.replace(/\s/g, "").match(/.{1,4}/g)?.join(" ").substr(0, 19) || ""
+  }
   // after form submit validating the form data using validator
   const submitFormData = (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
           <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Detals</div>
             <div style={{ display: "flex", justifyContent: "space-between", maxWidth: "387", width: "100%"}}>
               <Form.Group className="mb-4">
-             
+
                 <Form.Control
                   style={{
                     border: error ? "2px solid red" : "",
@@ -56,7 +58,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                   ""
                 )}
               </Form.Group>
-                  
+
               {/* Last Name input */}
               <Form.Group className="mb-4">
                 <Form.Control
@@ -105,16 +107,14 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
 
             {/* Input Phone */}
             <Form.Group className="mb-3">
-            
-     <Form.Control
+
+              <Form.Control
                 style={{
                   border: error ? "2px solid red" : "",
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem"
                 }}
-                mask="(+7 (999) 999-99-99)"
-
-                type="phone"
+                type="tel"
                 placeholder="Phone (+1534...)"
                 onChange={handleFormData("phoneId")}
               />
@@ -129,15 +129,25 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
 
             {/* Input CardNumber */}
             <Form.Group className="col-form-label-sm">
+         
+
+
               <Form.Control
                 style={{
                   border: error ? "2px solid red" : "",
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem"
                 }}
-                type="text"
-                placeholder="Card Number"
-                onChange={handleFormData("cardNumber")}
+                
+                inputMode="numeric"
+                type="tel"
+                autoComplete="cc-number"
+                placeholder="0000 0000 0000 0000"
+                onChange={(event) => {
+                  const {value} = event.target
+                  event.target.value = normalizeCardNumber(value)
+            handleFormData("cardNumber") 
+                }}
               />
               {error ? (
                 <Form.Text style={{ color: "red" }}>
@@ -146,7 +156,14 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
               ) : (
                 ""
               )}
+
+
+
+
+
+
             </Form.Group>
+             
 
             {/* Input Card Number */}
             <Form.Group
@@ -193,13 +210,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                 placeholder="CVV"
                 onChange={handleFormData("cardCVV")}
               />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
+
             </Form.Group>
             <div
               style={{

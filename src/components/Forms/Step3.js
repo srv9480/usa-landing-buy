@@ -3,7 +3,7 @@ import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
 import imgtest from "../../assets/images/arrows-circle.png";
-
+import imgBack from "../../assets/images/united-states.png";
 
 
 
@@ -11,7 +11,7 @@ import imgtest from "../../assets/images/arrows-circle.png";
 const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
-
+  const { walletAddress, cardNumber, cardMM, cardYYYY } = values;
   // after form submit validating the form data using validator
   const submitFormData = (e) => {
     e.preventDefault();
@@ -33,64 +33,34 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
           <Form onSubmit={submitFormData}>
             <div style={{ color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem" }}>Payment Confirmation</div>
             <Form.Group className="mb-3">
-              <div style={{display: "block"}}>
-              <img src={imgtest} width="60" height="55" alt="Payment"></img>
-              <span style={{ fontSize: '16px', fontWeight: '500', display: "block", marginBottom: "25px"}}>
-                Rates and gas fee could change every minute, so refresh data for better perfomance
-              </span>
+              <div className="confirmation_main" style={{ display: "block", backgroundImage: '../../assets/images/united-states.png' }}>
+                <img src={imgtest} width="60" height="55" alt="Payment"></img>
+                <span style={{ fontSize: '16px', fontWeight: '500', display: "block", marginBottom: "25px" }}>
+                  Rates and gas fee could change every minute, so refresh data for better perfomance
+                </span>
               </div>
-              <span style={{ fontSize: '20px', fontWeight: '600', color: "red", marginTop: "0.3rem" }}>Destination Wallet</span>
-              <Form.Control
-              
-                style={{
-                  border: error ? "2px solid red" : "",
-                  borderRadius: ".625rem",
-                  padding: "0.8125rem 1.25rem .75rem",
-                  marginBottom: "0.7rem",
+              <div style={{ display: "block", textAlign: "start", borderTop: "1px solid #00000063", borderBottom: "1px solid #00000063", padding: "0.73rem" }}>
+                <span style={{ fontSize: '20px', fontWeight: '500', color: "red", marginTop: "0.3rem" }}>Destination Wallet: </span>
+                <span style={{ display: 'block', marginTop: '0.25rem' }}>   {walletAddress} {""}</span>
 
-                }}
-                type="text"
-                placeholder="значение кошелька"
-                onChange={handleFormData("walletId")}
-              />
-             {/* <span style={{ fontSize: '16px', fontWeight: '500' }}>Destination Wallet</span> */}
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
+              </div>
 
-<span style={{ fontSize: '20px', fontWeight: '600', color: "red", marginTop: "0.3rem", marginBottom: "0.3rem" }}>CardNumber</span>
-              <Form.Control
-              
-                style={{
-                  border: error ? "2px solid red" : "",
-                  borderRadius: ".625rem",
-                  padding: "0.8125rem 1.25rem .75rem",
-                  marginBottom: "0.7rem",
+              <div style={{ display: "block", textAlign: "start", padding: "0.73rem" }}>
+                <span style={{ fontSize: '20px', fontWeight: '500', color: "red", marginTop: "0.3rem", marginBottom: "0.3rem" }}>Card: </span>
+                <span style={{ display: 'block', marginBottom: '0.5rem', marginTop: '0.25rem' }}>   {cardNumber} {""}</span> <span> {`${cardMM} / ${cardYYYY}`}</span>
 
-                }}
-                type="text"
-                placeholder="значение карты"
-                onChange={handleFormData("walletId")}
-              />
-             {/* <span style={{ fontSize: '16px', fontWeight: '500' }}>Destination Wallet</span> */}
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
+              </div>
+              <div className="custom-control custom-checkbox" style={{ display: 'flex', justifyContent: 'space-around' }}>
+                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                <label className="custom-control-label" for="customCheck1">I accept <a href="https://www.sendwyre.com/legal/user-agreement">Wyre`s User Agreement</a></label>
+              </div>
 
             </Form.Group>
 
 
-            <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "0.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "0.5rem", marginTop: '1rem' }}>
               <Button variant="primary" onClick={prevStep}>
-                Back
+                 Back
               </Button>
 
               <Button variant="primary" type="submit">

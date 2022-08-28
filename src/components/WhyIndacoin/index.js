@@ -1,11 +1,11 @@
 import React from 'react';
 //import styles from './styles.scss';
 import styles from './styles.scss';
-import icon1 from '../../assets/images/free-icon-7years.png';
-import icon2 from '../../assets/images/free-icon-5m.png';
-import icon3 from '../../assets/images/free-icon-credit.png';
-import icon4 from '../../assets/images/free-icon-support.png';
-import icon5 from '../../assets/images/free-icon-telegram.png';
+import icon1 from '../../assets/images/free-icon-7years.webp';
+import icon2 from '../../assets/images/free-icon-5m.webp';
+import icon3 from '../../assets/images/free-icon-credit.webp';
+import icon4 from '../../assets/images/free-icon-support.webp';
+import icon5 from '../../assets/images/free-icon-telegram.webp';
 
 const WhyIndacoin = () => {
       return (

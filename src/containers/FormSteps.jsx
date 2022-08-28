@@ -5,11 +5,14 @@ import StepOne from "@components/Forms/StepOne";
 import StepTwo from "@components/Forms/StepTwo";
 import Step3 from "@components/Forms/Step3";
 import Step4 from "@components/Forms/Step4";
-import StepErrorr from "@components/Forms/StepErrorr";
+import StepError from "@components/Forms/StepError";
+import StepErrorFinal from "@components/Forms/StepErrorFinal";
+
 import StepSuccess from "@components/Forms/StepSuccess";
 //import StepThree from "@components/Forms/StepThree";
 import Final from "@components/Forms/Final";
 import React from "react";
+import WalletData from "./Payment/render/WalletData";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PaymentContainer } from "@containers/Payment/index.jsx";
 //import OrderData from "./Payment/render/OrderData"
@@ -24,9 +27,9 @@ import { PaymentContainer } from "@containers/Payment/index.jsx";
 //       )
 
 
-function FormSteps (props) {
+function FormSteps(props) {
   //state for steps
-  const [step, setstep] = useState(1);
+  const [step, setstep] = useState(8);
 
   //state for form data
   const [formData, setFormData] = useState({
@@ -43,7 +46,7 @@ function FormSteps (props) {
     country: "",
     stateId: "",
     postCode: "",
-    cityId: "", 
+    cityId: "",
     walletAddress: ""
   });
 
@@ -78,50 +81,58 @@ function FormSteps (props) {
   // javascript switch case to show different form in each step
   switch (step) {
     // case 1 to show stepOne form and passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
- 
+
     case 1:
       return (
         <div className="AppA">
           <Container>
             <Row>
-              <Col md={{ span: 12, border: "none" }} className="custom-margin">      
-              <PaymentContainer valueSelected={props.valueSelected}
-                                     currencyGive={props.currencyGive}
-                                     currencyGet={props.currencyGet}
-                                     valueGet={props.valueGet}
-                                     setFormData={setFormData}
-                                 step={(step) => setstep(step)}/>
+              <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                <PaymentContainer valueSelected={props.valueSelected}
+                  currencyGive={props.currencyGive}
+                  currencyGet={props.currencyGet}
+                  valueGet={props.valueGet}
+                  setFormData={setFormData}
+                  step={(step) => setstep(step)} />
               </Col>
             </Row>
           </Container>
         </div>
       );
 
-      case 2:
-      return (
-        <div className="AppA">
-          <Container>
-            <Row>
-              <Col md={{ span: 12, border: "none" }} className="custom-margin">      
-                <StepErrorr
-                  nextStep={nextStep}
-                  handleFormData={handleInputData}
-                  values={formData}
-                /> 
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-    
-  
-    // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
     case 2:
       return (
         <div className="AppA">
           <Container>
             <Row>
               <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                {/* <StepErrorr
+                  nextStep={nextStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />  */}
+
+                <StepOne
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+
+
+    // case 2 to show stepTwo form passing nextStep, prevStep, and handleInputData as handleFormData method as prop and also formData as value to the fprm
+    case 3:
+      return (
+        <div className="AppA">
+          <Container>
+            <Row>
+              <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                
                 <StepTwo
                   nextStep={nextStep}
                   prevStep={prevStep}
@@ -133,30 +144,30 @@ function FormSteps (props) {
           </Container>
         </div>
       );
-      // Степ с круглой стрелкой, передаются {adressWallet} и {cardNumber}
-      // case 3:
-      //   return (
+    // Степ с круглой стрелкой, передаются {adressWallet} и {cardNumber}
+    // case 3:
+    //   return (
 
-      //     <div className="AppA">
-      //       <Container>
-      //         <Row>
-      //           <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-      //             <StepTwotest
-      //             nextStep={nextStep}
-      //             prevStep={prevStep}
-      //             //value={formData}
-      //             //handleFormData={handleInputData}                                   
-      //             />
-      //           </Col>
-      //         </Row>
-      //       </Container>
+    //     <div className="AppA">
+    //       <Container>
+    //         <Row>
+    //           <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+    //             <StepTwotest
+    //             nextStep={nextStep}
+    //             prevStep={prevStep}
+    //             //value={formData}
+    //             //handleFormData={handleInputData}                                   
+    //             />
+    //           </Col>
+    //         </Row>
+    //       </Container>
 
-      //     </div>
-      //   );
+    //     </div>
+    //   );
     // Only formData is passed as prop to show the final value at form submit
 
 
-    case 3:
+    case 4:
       return (
         <div className="AppA">
           <Container>
@@ -175,32 +186,52 @@ function FormSteps (props) {
       );
 
 
-      // case 4:
-      // return (
-      //   <div className="AppA">
-      //     <Container>
-      //       <Row>
-      //         <Col md={{ span: 12, border: "none" }} className="custom-margin">
-      //           <Step4
-      //             nextStep={nextStep}
-      //             prevStep={prevStep}
-      //             handleFormData={handleInputData}
-      //             values={formData}
-      //           />
-      //         </Col>
-      //       </Row>
-      //     </Container>
-      //   </div>
-      // );
+    // case 4:
+    // return (
+    //   <div className="AppA">
+    //     <Container>
+    //       <Row>
+    //         <Col md={{ span: 12, border: "none" }} className="custom-margin">
+    //           <Step4
+    //             nextStep={nextStep}
+    //             prevStep={prevStep}
+    //             handleFormData={handleInputData}
+    //             values={formData}
+    //           />
+    //         </Col>
+    //       </Row>
+    //     </Container>
+    //   </div>
+    // );
 
 
-      case 5:
+    case 5:
+      return (
+        <div className="AppA">
+          <Container>
+            <Row>
+              <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                <Step4
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                  handleFormData={handleInputData}
+                  values={formData}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      );
+
+
+
+      case 6:
         return (
           <div className="AppA">
             <Container>
               <Row>
                 <Col md={{ span: 12, border: "none" }} className="custom-margin">
-                  <StepSuccess
+                  <StepError
                     nextStep={nextStep}
                     prevStep={prevStep}
                     handleFormData={handleInputData}
@@ -212,20 +243,42 @@ function FormSteps (props) {
           </div>
         );
 
-    case 6:
+        case 7:
+          return (
+            <div className="AppA">
+              <Container>
+                <Row>
+                  <Col md={{ span: 12, border: "none" }} className="custom-margin">
+                    <StepErrorFinal
+                      nextStep={nextStep}
+                      prevStep={prevStep}
+                      handleFormData={handleInputData}
+                      values={formData}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+          );
+  
+  
+
+    case 8:
 
       return (
         <div className="AppA">
           <Container>
             <Row>
               <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                <Final data={props.data} values={formData} />
+                <StepSuccess data={props.data} values={formData} 
+         /> 
+         
               </Col>
             </Row>
           </Container>
         </div>
       );
-      
+
     // default case to show nothing
     default:
       return <div className="AppA"></div>;

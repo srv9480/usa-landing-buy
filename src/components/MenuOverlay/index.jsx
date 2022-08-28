@@ -35,7 +35,7 @@ const MenuOverlay = (props) => {
     }
 
     function getListCurImg(cur) {
-        try { return require(`../../assets/images/images-menu/${cur.toLowerCase()}.png`).default }
+        try { return require(`../../assets/images/images-menu/${cur.toLowerCase()}.webp`).default }
         catch (err) { return null }
     }
 

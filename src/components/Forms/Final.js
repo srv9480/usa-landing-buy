@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-
+import { Input } from '@components/Button';
 const Final = ({ values, data }) => {
   //destructuring the object from values
   const {
@@ -9,9 +9,11 @@ const Final = ({ values, data }) => {
     stateId,
     country,
     postCode,
+    amountGive,
     emailId,
     phoneId,
     cardNumber,
+    walletAddress,
     stAddressOne,
     stAddressTwo,
     cardCVV,
@@ -19,19 +21,24 @@ const Final = ({ values, data }) => {
     cardYYYY,
     cityId
   } = values;
+  const {amountGet} = data;
   return (
     <>
       <Card style={{ marginTop: 100, textAlign: "left" }}>
         <Card.Body>
           <p>
-            <strong>First Name :</strong> {data.formData.firstName}{" "}
+            <strong>First Name :</strong> {firstName} {" "}
           </p>
           <p>
             <strong>Last Name :</strong> {lastName}{" "}
           </p>
           <p>
+
             <strong>Email :</strong> {emailId}{" "}
           </p>
+          wallet: {walletAddress} {" "}
+          amountGet: {amountGive}           amountGet: {amountGet} {" "}
+
           phoneId {phoneId} {""},<p />
           cardNumber {cardNumber} {""},<p />
           cardMM {cardMM} {""},<p />

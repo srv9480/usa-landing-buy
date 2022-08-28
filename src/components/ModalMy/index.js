@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./styles.scss";
-import closeimg from "@assets/images/closeModal.png";
+import closeimg from "@assets/images/closeModal.webp";
 
 const ModalMy = ({ isVisible = false, title, content, footer, onClose }) => {
       const keydownHandler = ({ key }) => {

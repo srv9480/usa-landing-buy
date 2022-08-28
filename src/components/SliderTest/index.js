@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import waves from "../../assets/images/waves.png";
-import entrepreneur from "../../assets/images/entrepreneur.png";
-import cointelegraph from "../../assets/images/cointelegraph.png";
-import changelly from "../../assets/images/changelly.png";
-import yahoo from "../../assets/images/yahoo.png";
-import coingeek from "../../assets/images/coingeek.png";
+import waves from "../../assets/images/waves.webp";
+import entrepreneur from "../../assets/images/entrepreneur.webp";
+import cointelegraph from "../../assets/images/cointelegraph.webp";
+import changelly from "../../assets/images/changelly.webp";
+import yahoo from "../../assets/images/yahoo.webp";
+import coingeek from "../../assets/images/coingeek.webp";
 import rectangleDotActiveGr from "../../assets/images/rectangleDotActiveGr.svg"
 import rectangleDotLight from "../../assets/images/rectangleDotLight.svg"
 import styles from "./styles.scss"
