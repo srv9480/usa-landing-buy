@@ -34,7 +34,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
 
           <Form onSubmit={submitFormData}> 
           <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Detals</div>
-            <div style={{ display: "flex", justifyContent: "space-between", maxWidth: "387", width: "100%"}}>
+            <div style={{ display: "flex", justifyContent: "space-between", maxWidth: "387", width: "105%"}}>
               <Form.Group className="mb-4">
 
                 <Form.Control
@@ -223,7 +223,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                 variant="primary"
                 type="submit"
                 style={{
-                  width: "300px",
+                  width: "325px",
                   borderRadius: "22px",
                   height: "50px",
                   marginBottom: "1rem",

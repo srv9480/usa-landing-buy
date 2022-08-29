@@ -265,7 +265,7 @@ const WalletData = (props) => {
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
                 {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
                 />  */}
-                <Button type={'button'} onClick={() => createRequest(false)} loading={loading} disabled={false} className={'button'} title={'NEXT'}
+                <Button type={'button'} onClick={() => createRequest(false)} loading={loading} disabled={false} className={'button'} title={'Next'}
                 />
             </div>
             <MessageBox text={error} clearMessage={() => setError(null)} />

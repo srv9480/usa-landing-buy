@@ -58,13 +58,52 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
             </Form.Group>
 
 
-            <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "0.5rem", marginTop: '1rem' }}>
-              <Button variant="primary" onClick={prevStep}>
-                 Back
+            <div
+              style={{
+                display: "block",
+                width: "100px",
+                justifyContent: "space-between"
+              }}
+            >
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  width: "300px",
+                  borderRadius: "22px",
+                  height: "50px",
+                  marginBottom: "1rem",
+                  margin: "0 auto"
+                }}
+              >
+                Process the order
               </Button>
-
-              <Button variant="primary" type="submit">
-                Process The Order
+              <Button
+                variant="primary"
+                onClick={prevStep}
+                type="submit"
+                style={{
+                  backgroundColor: "white",
+                  marginTop: "20px",
+                  border: "none",
+                  color: "black",
+                  fontStyle: "bold"
+                }}
+              >
+                <svg
+                  width="8"
+                  height="10"
+                  viewBox="0 0 8 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ marginRight: "5" }}
+                >
+                  <path
+                    d="M-2.18557e-07 5L7.5 0.669872L7.5 9.33013L-2.18557e-07 5Z"
+                    fill="black"
+                  ></path>
+                </svg>
+                Go Back
               </Button>
             </div>
           </Form>

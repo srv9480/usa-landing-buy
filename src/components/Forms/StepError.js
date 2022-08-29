@@ -45,7 +45,7 @@ const StepError = ({ nextStep, handleFormData, prevStep, values }) => {
               </Button>
 
               <Button variant="primary" type="submit">
-                Process The Order
+                К ошибке
               </Button>
             </div>
           </Form>
