@@ -8,7 +8,7 @@ import phoneicon from "../../assets/images/phone.png";
 
 
 // creating functional component ans getting props from app.js and destucturing them
-const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
+const Step4 = ({ nextStep, handleFormData, prevStep, values }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
 
@@ -55,4 +55,4 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
   );
 };
 
-export default Step3;
+export default Step4;

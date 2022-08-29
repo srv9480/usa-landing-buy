@@ -43,9 +43,9 @@ const StepSuccess = ({ nextStep, handleFormData, prevStep, values }) => {
           <Form onSubmit={submitFormData}>
             <div style={{ color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem" }}> </div>
             <Form.Group className="mb-3">
-              <div style={{ display: "flex", position: "relative" }}>
+              <div style={{ display: "flex", position: "relative", alignItems: "center" }}>
                 <img src={successCheck} width="15" height="15" alt="" style={{ display: "flex" }} />
-                <span>Success! Your Purchased...</span>
+                <span style={{ paddingLeft: "0.5rem" }}>Success! Your Purchased...</span>
               </div>
             </Form.Group>
 
@@ -53,7 +53,7 @@ const StepSuccess = ({ nextStep, handleFormData, prevStep, values }) => {
             <div className="success__hero_container">
               <h3 style={{}}>{`{Wallet Order ID: }`} {`{generateOrderId}`} </h3>
               <div className="main__content">
-                <div className="content_item"><span>Payment method: </span></div>
+                <div className="content_item"><span>Payment method:</span><span>Payment method: </span></div>
                 <div className="content_item"><span>Sent To: </span></div>
                 <div className="content_item"><span>LETH Received: </span></div>
                 <div className="content_item"><span>Payment method: </span></div>
@@ -63,22 +63,21 @@ const StepSuccess = ({ nextStep, handleFormData, prevStep, values }) => {
               </div>
             </div>
 
-            <div className="under_text">
-              <img src={trustIcon} width="15" height="15" alt="trustpilot" style={{ display: "flex" }} />
-              <h3 style={{}}>{`{Trustpilot: }`} </h3><a href="./">How did we do?</a>
+
+
+
+            <div className="button_container">
+              <div className="up_text" style={{marginTop: "40px"}}>
+                <span>To access your crypto, processed yo your wallet aplication </span>
+              </div>
+              <Button variant="primary" style={{width: "100%", height: "50px", marginBottom: "0.7rem", marginTop:"0.5rem", borderRadius: "14px"}} onClick={""} >
+                Track transaction status
+              </Button>
+
+              <Button variant="primary" style={{width: "100%", height: "50px", borderRadius: "14px"}}>
+                Return to home
+              </Button>
             </div>
-
-
-
-<div className="button_container">
-            <Button variant="primary" onClick={""} >
-              Track transaction status
-            </Button>
-
-            <Button variant="primary" type="submit">
-              Return to home
-            </Button>
-</div>
 
 
           </Form>

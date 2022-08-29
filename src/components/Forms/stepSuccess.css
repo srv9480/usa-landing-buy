@@ -1,0 +1,11 @@
+.main__content {
+      background-color: rgb(216, 215, 215);
+      border-radius: 20px;
+      
+}
+
+.content_item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.9rem;
+}

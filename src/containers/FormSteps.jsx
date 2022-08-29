@@ -269,7 +269,7 @@ function FormSteps(props) {
         <div className="AppA">
           <Container>
             <Row>
-              <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+              <Col md={{ span: 14, offset: 0 }} className="custom-margin">
                 <StepSuccess data={props.data} values={formData} 
          /> 
          
