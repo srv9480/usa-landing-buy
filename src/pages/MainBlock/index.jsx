@@ -126,10 +126,4 @@ export default connect(
 
 
 
-                                // <PaymentContainer
-                                //     valueSelected={valueSelected}
-                                //     currencyGive={currencyGive}
-                                //     currencyGet={currencyGet}
-                                //     valueGet={valueGet}
-                                //     step={(step) => setStep(step)}
-                                // />
+                            

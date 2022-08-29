@@ -52,20 +52,51 @@
             margin-bottom: 9px;
         }
         svg {
-            margin: 15px;
+            margin: 22px;
         }
     }
 
-    .networksList {
+    .networksListTwo {
         background: #F8F8F8;
         border: 1px solid #DADCE0;
         border-radius: 13px;
-        padding: 10px !important;
-        margin: 8px 0 40px 0;
+        padding: 0.7rem !important;
+        margin: 8px 0 20px 0;
         display: flex;
-        width: 285px;
+        width: 225px;
         align-self: normal;
-        justify-content: center;
+        
+
+        :not(:last-child) {
+            margin-right: 8px;
+        }
+
+        li {
+            color: #000000;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 15px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        // .networkActive {
+        //     background: #640777;
+        //     border: 1px solid #3463F8;
+        //     color: #FFFFFF;
+        //     border-radius: 6px;
+        // }
+    }
+    .networksListOne {
+        background: #F8F8F8;
+        border: 1px solid #DADCE0;
+        border-radius: 13px;
+        padding: 0.7rem !important;
+        margin: 8px 0 10px 0;
+        display: flex;
+        width: 125px;
+        align-self: normal;
+       
 
         :not(:last-child) {
             margin-right: 8px;

@@ -29,7 +29,7 @@ import { PaymentContainer } from "@containers/Payment/index.jsx";
 
 function FormSteps(props) {
   //state for steps
-  const [step, setstep] = useState(8);
+  const [step, setstep] = useState(1);
 
   //state for form data
   const [formData, setFormData] = useState({
