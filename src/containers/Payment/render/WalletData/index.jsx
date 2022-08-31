@@ -216,25 +216,25 @@ const WalletData = (props) => {
 
                     });
                     props.setStep(2)
-                    props.setFormData(((prevState) => ({
-                        ...prevState,
-                        addressWallet
-                      })))
                 } else {
                     setError('Internal server Error. Please contact technical support')
                 }
             })
+            props.setFormData((prevState) => ({
+                ...prevState,
+                addressWallet: addressWallet
+              }))
         } else if (verify_contact) {
             props.setStep(2) 
-            props.setFormData(((prevState) => ({
+            props.setFormData((prevState) => ({
                 ...prevState,
-                walletAddress: addressWallet
-              })))}
+                addressWallet: addressWallet
+              }))}
         else { props.setStep(2) 
-            props.setFormData(((prevState) => ({
+            props.setFormData((prevState) => ({
                 ...prevState,
-                walletAddress: addressWallet
-              })))}
+                addressWallet: addressWallet
+              }))}
     }
 
     return (

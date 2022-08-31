@@ -221,8 +221,26 @@ const OrderData = (props) => {
                     setError('Internal server Error. Please contact technical support')
                 }
             })
+            props.setFormData((prevState) => ({
+                ...prevState,
+                selectedYouGive: selectedYouGive,
+                selectedYouGet: selectedYouGet,
+                amountGive: amountGive || props.valueSelected,
+                amountGet: amountGet,
+                activeNetwork: activeNetwork,
+                addressWallet: addressWallet
+              }))
         } else if (verify_contact) props.setStep(3)
-        else { props.setStep(2) }
+        else { props.setStep(2) 
+            props.setFormData((prevState) => ({
+            ...prevState,
+            selectedYouGive: selectedYouGive,
+            selectedYouGet: selectedYouGet,
+            amountGive: amountGive,
+            amountGet: amountGet,
+            activeNetwork: activeNetwork,
+            addressWallet: addressWallet
+          }))}
     }
 
     return (

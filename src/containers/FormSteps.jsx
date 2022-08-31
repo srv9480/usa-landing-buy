@@ -225,45 +225,45 @@ function FormSteps(props) {
 
 
 
-      case 6:
-        return (
-          <div className="AppA">
-            <Container>
-              <Row>
-                <Col md={{ span: 12, border: "none" }} className="custom-margin">
-                  <StepError
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                    handleFormData={handleInputData}
-                    values={formData}
-                  />
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        );
+      // case 6:
+      //   return (
+      //     <div className="AppA">
+      //       <Container>
+      //         <Row>
+      //           <Col md={{ span: 12, border: "none" }} className="custom-margin">
+      //             <StepError
+      //               nextStep={nextStep}
+      //               prevStep={prevStep}
+      //               handleFormData={handleInputData}
+      //               values={formData}
+      //             />
+      //           </Col>
+      //         </Row>
+      //       </Container>
+      //     </div>
+      //   );
 
-        case 7:
-          return (
-            <div className="AppA">
-              <Container>
-                <Row>
-                  <Col md={{ span: 12, border: "none" }} className="custom-margin">
-                    <StepErrorFinal
-                      nextStep={nextStep}
-                      prevStep={prevStep}
-                      handleFormData={handleInputData}
-                      values={formData}
-                    />
-                  </Col>
-                </Row>
-              </Container>
-            </div>
-          );
+      //   case 7:
+      //     return (
+      //       <div className="AppA">
+      //         <Container>
+      //           <Row>
+      //             <Col md={{ span: 12, border: "none" }} className="custom-margin">
+      //               <StepErrorFinal
+      //                 nextStep={nextStep}
+      //                 prevStep={prevStep}
+      //                 handleFormData={handleInputData}
+      //                 values={formData}
+      //               />
+      //             </Col>
+      //           </Row>
+      //         </Container>
+      //       </div>
+      //     );
   
   
 
-    case 8:
+    case 6:
 
       return (
         <div className="AppA">

@@ -53,10 +53,10 @@ const StepSuccess = ({ nextStep, handleFormData, prevStep, values }) => {
             <div className="success__hero_container">
               <h3 style={{}}>{`{Wallet Order ID: }`} {`{generateOrderId}`} </h3>
               <div className="main__content">
-                <div className="content_item"><span>Payment method:</span><span>Payment method: </span></div>
-                <div className="content_item"><span>Sent To: </span></div>
-                <div className="content_item"><span>LETH Received: </span></div>
-                <div className="content_item"><span>Payment method: </span></div>
+                <div className="content_item"><span>Payment method:</span><span>{values.cardNumber} </span></div>
+                <div className="content_item"><span>Sent To: {values.addressWallet}</span></div>
+                <div className="content_item"><span>{values.selectedYouGet} Received: {values.amountGet.toFixed(5)} {values.selectedYouGet}</span></div>
+                <div className="content_item"><span>{values.amountGet.toFixed(5)} {values.selectedYouGet}: {values.selectedYouGive} {values.amountGive}</span></div>
                 <div className="content_item"><span>WYRE fees: </span></div>
                 <div className="content_item"><span>Network fees: </span></div>
                 <div className="content_item"><span>Total USD Pald: </span></div>

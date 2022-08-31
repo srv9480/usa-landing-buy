@@ -15,6 +15,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
   // after form submit validating the form data using validator
   const submitFormData = (e) => {
     e.preventDefault();
+    console.log(e)
 
     // checking if value of first name and last name is empty show error else take to step 2
     if (
@@ -136,18 +137,14 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                 style={{
                   border: error ? "2px solid red" : "",
                   borderRadius: ".625rem",
-                  padding: "0.8125rem 1.25rem .75rem"
+                  padding: "0.8125rem 1.25rem .75rem",
+                  width: "90%"
                 }}
-                
-                inputMode="numeric"
-                type="tel"
-                autoComplete="cc-number"
-                placeholder="0000 0000 0000 0000"
-                onChange={(event) => {
-                  const {value} = event.target
-                  event.target.value = normalizeCardNumber(value)
-            handleFormData("cardNumber") 
-                }}
+                name="cardNumber"
+                defaultValue={values.cardNumber}
+                type="text"
+                placeholder="First Name"
+                onChange={handleFormData("cardNumber")}
               />
               {error ? (
                 <Form.Text style={{ color: "red" }}>

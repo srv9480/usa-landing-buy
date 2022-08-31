@@ -27,7 +27,7 @@ export function PaymentContainer(props) {
     function renderForm(step, setStep, valueSelected, currencyGive, currencyGet, valueGet) {
         switch(step) {
             case 1: return (
-                <OrderData valueGet={valueGet} currencyGet={currencyGet} currencyGive={currencyGive} valueSelected={valueSelected} setStep = {(step) => setStep(step)} />
+                <OrderData valueGet={valueGet} currencyGet={currencyGet} currencyGive={currencyGive} valueSelected={valueSelected} setStep = {(step) => setStep(step)} setFormData={props.setFormData}/>
             )
             // case 1: return <OrderData setStep = {(step) => setStep(step)} />;
             case 2: return (
