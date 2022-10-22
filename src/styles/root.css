@@ -55,15 +55,39 @@ h2 {
   content: url("../assets/images/next-arrow.svg") !important;
 }
 
-@media (max-width: 1150px) {
+/* @media (max-width: 1150px) {
   .slick-prev:before {
     content: "" !important;
   }
   .slick-next:before {
     content: "" !important;
   }
+} */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #3463F8;
+}
+::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: #f9f9fd;
+}
 
 div[class="slick-track"] {
   display: flex !important;
@@ -103,9 +127,10 @@ div[class="slick-dots"]{
   }
 }
 
-@media(min-width: 576px) AND (max-width: 767px) {
+@media(max-width: 767px) {
   .wrapper {
-    width: 95%;
+    width: 90%;
+    margin: 0 auto;
   }
 }
 

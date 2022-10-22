@@ -5,6 +5,7 @@ import styles from "./styles.scss";
 
 // redux
 import { connect } from "react-redux";
+import axios from "axios"
 
 // Import images
 import mastercard from '@assets/images/icons/mastercard.svg'
@@ -34,11 +35,78 @@ function Paymentpage(props) {
     const [render, setRender] = useState(null)
     const [step, setStep] = useState(1)
     const [isModal, setModal] = React.useState(false);
-    const [valueSelected, setValueSelected] = useState(0)
+    const [valueSelected, setValueSelected] = useState(100)
     const [currencyGive, setCurrencyGive] = useState("USD")
     const [currencyGet, setCurrencyGet] = useState("BTC")
     const [valueGet, setValueGet] = useState(0)
     const [data, setData] = useState({})
+    const [fiat, setFiat] = useState({})
+    const [crypto, setCrypto] = useState()
+    const [needCrypto, setNeedCrypto] = useState({});
+    const [needFiat, setNeedFiat] = useState({});
+    const [showCrypto, setShowCrypto] = useState()
+    const [showFiat, setShowFiat] = useState()
+
+    console.log(valueSelected)
+
+    useEffect(() => {
+        axios.get(`https://usaapi.indacoin.io/Currencies/all`,{
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            'accept': "*/*",
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+            .then(res => {
+                setFiat(res.data.fiat)
+        })
+        axios.get(`https://usaapi.indacoin.io/Currencies/all`,{
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            'accept': "*/*",
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+            .then(res => {
+                setCrypto(res.data.crypto)
+        })
+       
+    }, [])
+
+    useEffect(() => {
+        axios.get(`https://usaapi.indacoin.io/Currencies/fiat/USD/pairs`,
+        {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            'accept': "*/*",
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+        .then(res => {
+            setNeedCrypto(res.data)
+            var result = crypto.filter(function (el) {
+                return res.data.indexOf(el.symbol) >= 0; 
+              });
+              setShowCrypto(result)
+    })
+    }, [crypto])
+
+    useEffect(() => {
+        axios.get(`https://usaapi.indacoin.io/Currencies/crypto/BTC/pairs`, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            'accept': "*/*",
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+        .then(res => {
+            setNeedFiat(res.data)
+            var result = fiat.filter(function (el) {
+                return res.data.indexOf(el.symbol) >= 0; 
+              });
+              setShowFiat(result)
+    })
+    }, [fiat])
 
     useEffect(() => {
         if (props.currencyes) {
@@ -46,19 +114,17 @@ function Paymentpage(props) {
         }
     }, [props]);
 
-    console.log(data)
     return (
         <>
             <Header />
             {
                 !render ? <FullscreenLoader /> :
-                    <div className={`${styles.wrapper} ${step != 1 && styles.noFirstStep}`}>
+                    <div>
                        <section>
                             <div></div>
                             <div className={styles.main}>
-
-                                <div id="section1" className={styles.mainElements}>
-                                    <div id="section1" className={styles.titleText}>
+                                <div className={styles.mainElements}>
+                                    <div className={styles.titleText}>
                                         <div className={styles.titleTextUp}>
                                             <h1>Buy crypto <br />with credit card</h1>
                                         </div>
@@ -66,7 +132,8 @@ function Paymentpage(props) {
                                             <h1>in the USA</h1>
                                         </div>
                                     </div>
-                                    <div className={styles.buyForm}>
+                                    <div id="section1" className={styles.buyForm}>
+                                        {fiat && showCrypto &&
                                         <OrderDataTest
                                             setValueSelected={setValueSelected}
                                             setCurrencyGive={setCurrencyGive}
@@ -75,9 +142,18 @@ function Paymentpage(props) {
                                             setData={setData}
                                             setModal={setModal}
                                             loading={loading}
+                                            fiat={fiat}
+                                            crypto={crypto}
+                                            needCrypto={needCrypto}
+                                            setNeedCrypto={setNeedCrypto}
+                                            setShowCrypto={setShowCrypto}
+                                            showCrypto={showCrypto}
+                                            needFiat={needFiat}
+                                            setNeedFiat={setNeedFiat}
+                                            setShowFiat={setShowFiat}
+                                            showFiat={showFiat}
                                         />
-
-                                        
+}
                                     </div>
                                 </div>
                             </div>

@@ -36,7 +36,7 @@ const FaqItem = ({ title, text, currentRow }) => {
       </div>
       {open && (
         <div className={styles.answerBlock}>
-          <p>{<div dangerouslySetInnerHTML={{ __html: text }}></div>}</p>
+          <div dangerouslySetInnerHTML={{__html: text}}/>
         </div>
       )}
     </>

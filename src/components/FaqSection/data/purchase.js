@@ -22,7 +22,7 @@ const purchase= [
     },
     {
         title: "I have problems with the order, what should I do? ",
-        text: "Please ask for help via <a style='color: #8F83F3'>support@indacoin.com </a>or in <a style='color: #8F83F3' href='https://t.me/Indacoin_Support'>Telegram</a>."
+        text: "Please ask for help via <a style='color: #8F83F3'>support@indacoin.com </a> or in <a style='color: #8F83F3' href='https://t.me/Indacoin_Support'>Telegram</a>."
     },
     {
         title: "My order was declined by the bank, what should I do?",

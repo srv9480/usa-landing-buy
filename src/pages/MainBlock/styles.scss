@@ -23,6 +23,44 @@
 	}
 }
 
+@media(max-width: 575px) {
+	.mainElements {
+	  margin: 0;
+	  align-items: stretch;
+	}
+  }
+  
+  @media(max-width: 767px) {
+	.mainElements {
+	  width: 95%;
+	  margin: 0 auto;
+	}
+  }
+  
+  @media(min-width: 768px) AND (max-width: 991px) {
+	.mainElements {
+	  width: 95%;
+	}
+  }
+  
+  @media(min-width: 992px) AND (max-width: 1199px) {
+	.mainElements {
+	  width: 95%;
+	}
+  }
+  
+  @media(min-width: 1200px) AND (max-width: 1899px) {
+	.mainElements {
+	  width: 75%;
+	}
+  }
+  
+  @media(min-width: 1900px) {
+	.mainElements {
+	  width: 75%;
+	}
+  }
+
 .titleText {
 	max-width: 710px;
 }

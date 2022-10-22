@@ -44,7 +44,8 @@
     }
 
     .orderData__currencyes {
-        display: block;
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
         .orderDataGive {
             text-align: left;

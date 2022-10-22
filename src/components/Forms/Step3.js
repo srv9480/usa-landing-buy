@@ -5,13 +5,16 @@ import validator from "validator";
 import imgtest from "../../assets/images/arrows-circle.png";
 import imgBack from "../../assets/images/united-states.png";
 
+import axios from "axios"
+
 
 
 // creating functional component ans getting props from app.js and destucturing them
-const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
+const Step3 = ({ nextStep, handleFormData, prevStep, values, setResponsOrder, setErrorOrder }) => {
   //creating error state for validation
   const [error, setError] = useState(false);
   const { walletAddress, cardNumber, cardMM, cardYYYY } = values;
+  console.log(values)
   // after form submit validating the form data using validator
   const submitFormData = (e) => {
     e.preventDefault();
@@ -23,6 +26,32 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
     ) {
       setError(true);
     } else {
+      axios.post('https://usaapi.indacoin.io/create', {
+        debitCard: {
+            number: values.cardNumber,
+            year: values.cardYYYY,
+            month: values.cardMM,
+            cvv: values.cardCVV
+        },
+        reservationId: values.reservationId,
+        givenName: values.firstName,
+        familyName: values.lastName,
+        email: values.emailId,
+        phone: values.phoneId,
+        address: {
+            street1: values.stAddressOne,
+            city: values.cityId,
+            state: values.stateId,
+            postalCode: values.postId,
+            country: "US"
+        }
+    })
+      .then(function (response) {
+        setResponsOrder(response.data)
+        setErrorOrder(false)
+      }).catch((e) => {
+        setErrorOrder(true)
+      }) 
       nextStep();
     }
   };
@@ -61,7 +90,7 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
             <div
               style={{
                 display: "block",
-                width: "100px",
+                width: "100%",
                 justifyContent: "space-between"
               }}
             >
@@ -87,7 +116,11 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
                   marginTop: "20px",
                   border: "none",
                   color: "black",
-                  fontStyle: "bold"
+                  fontStyle: "bold", 
+                  display: "display",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%"
                 }}
               >
                 <svg
@@ -96,7 +129,7 @@ const Step3 = ({ nextStep, handleFormData, prevStep, values }) => {
                   viewBox="0 0 8 10"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  style={{ marginRight: "5" }}
+                  style={{ marginRight: "5"  }}
                 >
                   <path
                     d="M-2.18557e-07 5L7.5 0.669872L7.5 9.33013L-2.18557e-07 5Z"

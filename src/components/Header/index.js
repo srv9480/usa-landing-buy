@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles.scss";
 import logo from "../../assets/images/LogoHeader.svg";
 import modalclose from "../../assets/images/modalclose.png";
-import openMenuIcon from "../../assets/images/openMenuIcon.png";
+import openMenuIcon from "../../assets/images/hamburger_icon.png";
 import { Link, animateScroll as scroll } from "react-scroll";
 
 const Header = () => {
@@ -78,21 +78,54 @@ const Header = () => {
         {mobile && (
           <div className={styles.mobileMenu}>
             <div>
-              <p
-                className={styles.navItem}
-                // style={{ color:"#8F83F3 !important", fontWeight:700}}
+              <Link
+                activeClass="active"
+                to="section1"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={900}
               >
-                Buy Crypto
-              </p>
+                {" "}<p onClick={() => setMobile(false)} className={styles.navItem}>Buy Crypto</p>
+              </Link>
             </div>
             <div>
-              <p className={styles.navItem}>Why Crypto</p>
+            <Link
+                activeClass="active"
+                to="section2"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={900}
+              >
+                {" "}<p onClick={() => setMobile(false)} className={styles.navItem}>Why Crypto</p>
+              </Link>
+              
             </div>
             <div>
-              <p className={styles.navItem}>Why Indacoin</p>
+            <Link
+                activeClass="active"
+                to="section3"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={900}
+              >
+                {" "}<p onClick={() => setMobile(false)} className={styles.navItem}>Why Indacoin</p>
+              </Link>
             </div>
             <div>
-              <p className={styles.navItem}>How to buy Crypto</p>
+            <Link
+                activeClass="active"
+                to="section4"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={900}
+              >
+                {" "}<p onClick={() => setMobile(false)} className={styles.navItem}>How to buy Crypto</p>
+              </Link>
+              
             </div>
           </div>
         )}

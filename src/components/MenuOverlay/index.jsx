@@ -30,6 +30,7 @@ const MenuOverlay = (props) => {
     function itemsMenu() {
         return outItems.filter(item => {
             if (item.longName) return item.longName.toLowerCase().includes(search.toLowerCase())
+            console.log(item.name)
             return item.name.toLowerCase().includes(search.toLowerCase())
         })
     }

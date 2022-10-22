@@ -34,7 +34,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
         <Card.Body>
 
           <Form onSubmit={submitFormData}> 
-          <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Detals</div>
+          <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Details</div>
             <div style={{ display: "flex", justifyContent: "space-between", maxWidth: "387", width: "105%"}}>
               <Form.Group className="mb-4">
 
@@ -93,13 +93,12 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                   padding: "0.8125rem 1.25rem .75rem"
                 }}
                 type="email"
-                placeholder="email@address.com"
+                placeholder="Email"
                 onChange={handleFormData("emailId")}
-                value={"dsada@dd.com"}
               />
               {error ? (
                 <Form.Text style={{ color: "red" }}>
-                  email is a required
+                  Email is a required
                 </Form.Text>
               ) : (
                 ""
@@ -138,12 +137,11 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                   border: error ? "2px solid red" : "",
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem",
-                  width: "90%"
                 }}
                 name="cardNumber"
                 defaultValue={values.cardNumber}
                 type="text"
-                placeholder="First Name"
+                placeholder="Card Number"
                 onChange={handleFormData("cardNumber")}
               />
               {error ? (
@@ -212,7 +210,7 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
             <div
               style={{
                 display: "block",
-                width: "100px",
+                width: "100%",
                 justifyContent: "space-between"
               }}
             >
@@ -238,7 +236,11 @@ const StepOne = ({ nextStep, handleFormData, values, prevStep }) => {
                   marginTop: "20px",
                   border: "none",
                   color: "black",
-                  fontStyle: "bold"
+                  fontStyle: "bold",
+                  display: "display",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%"
                 }}
               >
                 <svg

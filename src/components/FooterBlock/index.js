@@ -17,7 +17,7 @@ const FooterBlock = () => {
           <ul className={styles.menuFooter}>
             <Link
               activeClass="active"
-              to="section4"
+              to="section1"
               spy={true}
               smooth={true}
               offset={-70}
@@ -27,7 +27,7 @@ const FooterBlock = () => {
             </Link>
             <Link
               activeClass="active"
-              to="section4"
+              to="section2"
               spy={true}
               smooth={true}
               offset={-70}
@@ -37,7 +37,7 @@ const FooterBlock = () => {
             </Link>
             <Link
               activeClass="active"
-              to="section4"
+              to="section3"
               spy={true}
               smooth={true}
               offset={-70}

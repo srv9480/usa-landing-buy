@@ -7,9 +7,8 @@ import { Input }         from '@components/Button'
 
 const YouGive = (props) => {
     return (
-        <div className={styles.paymentInput} style={{marginTop: '0px'}}>
+        <div className={styles.paymentInput}>
             <Input
-                label={'You pay'}
                 type='number'
                 error={props.error}
                 value={props.amount}
@@ -26,7 +25,7 @@ const YouGive = (props) => {
                 disabled={props.disabled}
             />
             { props.error && <span className={styles.info} style={{color: '#ff0000'}}> {props.error} </span> }
-            { !props.error && <span className={styles.info} style={{color: 'rgba(0, 0, 0, 0.6)'}}> {props.priceOneCrypto} </span> }
+            { !props.error && <span className={styles.info} style={{color: 'rgba(0, 0, 0, 0.6)', position: 'absolute', top: "100%"}}> {props.priceOneCrypto} </span> }
         </div>
     );
 }

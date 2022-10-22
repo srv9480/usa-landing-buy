@@ -2,10 +2,55 @@ import React, { useState } from "react";
 import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
-
-
-
-
+var array = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'IllinoisIndiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'MontanaNebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'PennsylvaniaRhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming'
+];
 
 
 // creating functional component ans getting props from app.js and destucturing them
@@ -32,16 +77,23 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
       <Card style={{ marginTop: 0, border: "none" }}>
         <Card.Body>
           <Form onSubmit={submitFormData}>
-          <div style={{color: "#ec347a", marginBottom: "30px", fontWeight: "600", fontSize: "1.3125rem"}}>Payment Detals</div>
+            <div
+              style={{
+                color: "#ec347a",
+                marginBottom: "10px",
+                fontWeight: "600",
+                fontSize: "1.3125rem",
+              }}
+            >
+              Payment Details
+            </div>
             <Form.Group className="mb-3">
-
               <Form.Control
                 style={{
                   border: error ? "2px solid red" : "",
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem",
                   marginBottom: "0.7rem",
-
                 }}
                 type="text"
                 placeholder="Street Address 1"
@@ -60,7 +112,6 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem",
                   marginBottom: "0.7rem",
-
                 }}
                 type="text"
                 placeholder="Street Address 2"
@@ -74,68 +125,21 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
                 ""
               )}
 
-              <Form.Select aria-label="Default select example" style={{
-
-                borderRadius: ".625rem",
-                padding: "0.8125rem 1.25rem .75rem",
-                marginBottom: "0.7rem",
-      
-              }}
-              onChange={handleFormData("countryId")}
-              >
-              
-                <option>Country</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-
-
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-
-<Form.Select aria-label="Default select example" style={{
-
-borderRadius: ".625rem",
-padding: "0.8125rem 1.25rem .75rem",
-marginBottom: "0.7rem",
-width: "50%",
-}}
-onChange={handleFormData("stateId")}
->
-
-<option>State</option>
-<option value="1">One</option>
-<option value="2">Two</option>
-<option value="3">Three</option>
-</Form.Select>
-
-
-{error ? (
-<Form.Text style={{ color: "red" }}>
-  This is a required field
-</Form.Text>
-) : (
-""
-)}
-
-              <Form.Control
+              <Form.Select
+                aria-label="Default select example"
                 style={{
-                  border: error ? "2px solid red" : "",
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem",
                   marginBottom: "0.7rem",
-                  width: "50%",
                 }}
-                type="text"
-                placeholder="Post Code"
-                onChange={handleFormData("postId")}
-              />
+                onChange={handleFormData("countryId")}
+              >
+                <option selected>US</option>
+                {/* <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option> */}
+              </Form.Select>
+
               {error ? (
                 <Form.Text style={{ color: "red" }}>
                   This is a required field
@@ -143,7 +147,65 @@ onChange={handleFormData("stateId")}
               ) : (
                 ""
               )}
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div>
+                  <Form.Select
+                    aria-label="Default select example"
+                    style={{
+                      borderRadius: ".625rem",
+                      padding: "0.8125rem 1.25rem .75rem",
+                      marginBottom: "0.7rem",
+                      width: "95%",
+                    }}
+                    onClick={(e) => {
+                      var txt = "All options: ";
+                      var i;
+                      for (i = 0; i < e.target.options.length; i++) {
+                        txt = txt + "\n" + e.target.options[i].value;
+                      }
+                      console.log(txt);
+                    }}
+                    onChange={handleFormData("stateId")}
+                  >
+                    <option>State</option>
+                    {array.map((item) => {
+                      return <option value={item}>{item}</option>;
+                    })}
+                  </Form.Select>
+
+                  {error ? (
+                    <Form.Text style={{ color: "red" }}>
+                      This is a required field
+                    </Form.Text>
+                  ) : (
+                    ""
+                  )}
+                </div>
+
+                <div>
+                  <Form.Control
+                    style={{
+                      border: error ? "2px solid red" : "",
+                      borderRadius: ".625rem",
+                      padding: "0.8125rem 1.25rem .75rem",
+                      marginBottom: "0.7rem",
+                      width: "100%",
+                    }}
+                    type="text"
+                    placeholder="Post Code"
+                    onChange={handleFormData("postId")}
+                  />
+                  {error ? (
+                    <Form.Text style={{ color: "red" }}>
+                      This is a required field
+                    </Form.Text>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
             </Form.Group>
+
             <Form.Group className="mb-3">
               <Form.Control
                 style={{
@@ -151,7 +213,6 @@ onChange={handleFormData("stateId")}
                   borderRadius: ".625rem",
                   padding: "0.8125rem 1.25rem .75rem",
                   marginBottom: "0.7rem",
-
                 }}
                 type="text"
                 placeholder="City"
@@ -168,8 +229,8 @@ onChange={handleFormData("stateId")}
             <div
               style={{
                 display: "block",
-                width: "100px",
-                justifyContent: "space-between"
+                width: "100%",
+                justifyContent: "space-between",
               }}
             >
               <Button
@@ -180,7 +241,7 @@ onChange={handleFormData("stateId")}
                   borderRadius: "22px",
                   height: "50px",
                   marginBottom: "1rem",
-                  margin: "0 auto"
+                  margin: "0 auto",
                 }}
               >
                 Next
@@ -194,7 +255,11 @@ onChange={handleFormData("stateId")}
                   marginTop: "20px",
                   border: "none",
                   color: "black",
-                  fontStyle: "bold"
+                  fontStyle: "bold",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
                 }}
               >
                 <svg

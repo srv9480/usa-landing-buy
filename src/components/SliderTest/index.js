@@ -55,21 +55,11 @@ export default class SimpleSlide extends Component {
                         slidesToScroll: 2,
                         infinite: true,
                         dots: true,
-                        arrows: false,
+                        initialSlide: 2,
                         beforeChange: (prev, next) => {
                             this.setState({
                                 dotIndex: next / 3
                             });
-                        },
-                        customPaging: function (i) {
-                            if (i === state.dotIndex)
-                                return (
-                                    <img style={{ display: "none" }} src={rectangleDotActiveGr} width={20} height={15} />
-                                );
-                            else
-                                return (
-                                    <img style={{ display: "none" }} src={rectangleDotLight} width={20} height={15} />
-                                );
                         },
                     }
                 },

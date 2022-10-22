@@ -14,6 +14,7 @@ import MessageBox from '@components/MessageBox';
 
 // request
 import requests from "@requests/request";
+import axios from "axios"
 
 // img
 import mastercard from '@assets/images/icons/mastercard.svg'
@@ -158,7 +159,7 @@ const WalletData = (props) => {
     }
 
     const validateWallet = (value) => {
-        console.log(value);
+
         setAddressWallet(value)
        
         const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
@@ -179,6 +180,19 @@ const WalletData = (props) => {
         const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
         const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
         const network = youGet.networks.find((network) => network.shortName === activeNetwork)
+        console.log(amountGive)
+        axios.post('https://usaapi.indacoin.io/reservation/create', {
+                sourceAmount: Number(props.valueSelected),
+                sourceCurrency: youGive.shortName,
+                destCurrency: youGet.shortName,
+                dest: addressWallet
+              })
+              .then(function (response) {
+                props.setFormData((prevState) => ({
+                    ...prevState,
+                    reservationId: response.data.reservationId
+                  }))
+              })
         if (!value_exchangeRequestId && !value_exchangeRequestHash) {
             const currencyInId = youGive.id;
             const currencyOutId = youGet.id;
@@ -199,27 +213,37 @@ const WalletData = (props) => {
             const params = { currencyInId, currencyOutId, amountIn, amountOut, cryptoAddress, networkId, partnerName, exchangeRequestUserAgentInfo };
             setLoading(true)
             setDisableButton(true)
-            requests.Exchange(params).then(response => {
-                setLoading(false)
-                setDisableButton(false)
-                if (response?.exchangeRequestId && response.hash && response.tradeUserId) {
-                    props.action_getInstanceState({
-                        value_exchangeRequestId: response.exchangeRequestId,
-                        value_exchangeRequestHash: response.hash,
-                        value_tradeUserId: response.tradeUserId,
-                        selected_youGive: selectedYouGive,
-                        selected_youGet: selectedYouGet,
-                        value_youGive: amountGive,
-                        value_youGet: amountGet,
-                        value_network: activeNetwork,
-                        value_destinationAddress: addressWallet
+            // requests.Exchange(params).then(response => {
+            //     setLoading(false)
+            //     setDisableButton(false)
+            //     if (response?.exchangeRequestId && response.hash && response.tradeUserId) {
+            //         props.action_getInstanceState({
+            //             value_exchangeRequestId: response.exchangeRequestId,
+            //             value_exchangeRequestHash: response.hash,
+            //             value_tradeUserId: response.tradeUserId,
+            //             selected_youGive: selectedYouGive,
+            //             selected_youGet: selectedYouGet,
+            //             value_youGive: amountGive,
+            //             value_youGet: amountGet,
+            //             value_network: activeNetwork,
+            //             value_destinationAddress: addressWallet
 
-                    });
-                    props.setStep(2)
-                } else {
-                    setError('Internal server Error. Please contact technical support')
-                }
-            })
+            //         });
+            //         props.setStep(2)
+            //     } else {
+            //         setError('Internal server Error. Please contact technical support')
+            //     }
+            // })
+            // axios.post('https://usaapi.indacoin.io/reservation/create', {
+            //     sourceAmount: Number(amountGive),
+            //     sourceCurrency: "string",
+            //     destCurrency: "string",
+            //     dest: addressWallet
+            //   })
+            //   .then(function (response) {
+            //     console.log(response);
+            //   })
+            console.log(youGive)
             props.setFormData((prevState) => ({
                 ...prevState,
                 addressWallet: addressWallet
@@ -265,7 +289,7 @@ const WalletData = (props) => {
                 {/* <Button type={'button'} onClick={() => console.log('Cancel payment')} disabled={false} className={'text'} title={'Cancel payment'} /> */}
                 {/* <Button type={'button'} onClick={() => createRequest()} loading={loading} disabled={setDisableButton} className={'button'} title={'Buy Crypto now'}
                 />  */}
-                <Button type={'button'} onClick={() => createRequest(false)} loading={loading} disabled={false} className={'button'} title={'Next'}
+                <Button type={'button'} onClick={() => createRequest(false)} loading={loading} disabled={!addressWallet} className={'button'} title={'Next'}
                 />
             </div>
             <MessageBox text={error} clearMessage={() => setError(null)} />

@@ -10,7 +10,7 @@
 .headerLeft{
     width: 40%;
     font-weight: 600;
-    font-size: 50px;
+    font-size: 46px;
     line-height: 68px;
     color: #3463F8;
     border-right: 2px solid #3463F8;
@@ -19,6 +19,10 @@
         border-bottom: 2px solid #3463F8;
         width: auto;
         margin-bottom: 30px;
+    }
+    @media (max-width: 500px) {
+        font-size: 38px;
+        line-height: 48px;
     }
 }
 

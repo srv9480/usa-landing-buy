@@ -15,6 +15,7 @@ import ModalMy from '@components/ModalMy';
 
 // request
 import requests from "@requests/request";
+import axios from "axios"
 
 // img
 import mastercard from '@assets/images/icons/mastercard.svg'
@@ -33,7 +34,7 @@ const OrderDataTest = (props) => {
 
     // YouGive
     const [selectedYouGive, setSelectedYouGive] = useState('USD');
-    const [amountGive, setAmountGive] = useState(null);
+    const [amountGive, setAmountGive] = useState(100);
     const [disabledGive, setDisabledGive] = useState(false)
     const debouncedValue = useDebounce(amountGive, 500)
     const [errorGive, setErrorGive] = useState(null);
@@ -59,22 +60,22 @@ const OrderDataTest = (props) => {
     const [error, setError] = useState(false);
     // const [modalActive, setModalActive] = useState(true);
 
-    const [isModal, setModal] = React.useState(false);
 
 
     // Подгрузка списка сетей при смене криптовалюты и установка активной сети    
-    useEffect(() => {
-        setNetworks(props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet).networks)
-        
-        if (debouncedValue) Converter()
-    }, [selectedYouGet])
+    // useEffect(() => {
+    //     setNetworks(props.crypto.find((curr) => curr.symbol === selectedYouGet).networks)
+    //     console.log(props.currencyes.crypto)
+    //     console.log(selectedYouGet)
+    //     if (debouncedValue) Converter()
+    // }, [selectedYouGet])
 
-    useEffect(() => setActiveNetwork(networks[0]?.shortName), [networks])
+    // useEffect(() => setActiveNetwork(networks[0]?.shortName), [networks])
 
     // Запуск конвертера при изменении валют и суммы
     useEffect(() => {
         if (debouncedValue) Converter()
-    }, [selectedYouGive, debouncedValue])
+    }, [selectedYouGive, debouncedValue, selectedYouGet])
 
 
 
@@ -145,16 +146,23 @@ const OrderDataTest = (props) => {
         setloadingGet(true)
         setAmountGet(' ')
         setErrorGive(null)
-        const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
-        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
-        const network = youGet.networks.find((network) => network.shortName.toUpperCase() === activeNetwork.toUpperCase()) || youGet.networks[0]
-        requests.Calculator(youGive.id, youGet.id, debouncedValue, network.id).then((data) => {
-            setAmountGet(data)
-            props.setValueGet(data)
-        }).catch(error => {
-            if (error.response.status === 400) setErrorGive(error.response.data)
-            else setErrorGive('internal Server Error')
-        })
+        const youGive = props.fiat.find((curr) => curr.symbol === selectedYouGive)
+        const youGet = props.crypto.find((curr) => curr.symbol === selectedYouGet)
+        // const network = youGet.networks.find((network) => network.shortName.toUpperCase() === activeNetwork.toUpperCase()) || youGet.networks[0]
+        // requests.Calculator(youGive.id, youGet.id, debouncedValue, network.id).then((data) => {
+        //     console.log(data)
+        //     setAmountGet(data)
+        //     props.setValueGet(data)
+        // }).catch(error => {
+        //     if (error.response.status === 400) setErrorGive(error.response.data)
+        //     else setErrorGive('internal Server Error')
+        // })
+        axios.get(`https://usaapi.indacoin.io/Currencies/rates?baseCurSymbol=${youGive.symbol}&quoteCurSymbol=${youGet.symbol}`)
+                                .then(res => {
+                                    
+                                    setAmountGet(res.data * debouncedValue)
+            props.setValueGet(res.data * debouncedValue)
+                            })
         setloadingGet(false)
     }
 
@@ -164,7 +172,7 @@ const OrderDataTest = (props) => {
             value_exchangeRequestHash,
             verify_contact
         } = props.getInstanceState
-        const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
+        const youGive = props.fiat.find((curr) => curr.shortName === selectedYouGive)
         const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
         const network = youGet.networks.find((network) => network.shortName === activeNetwork)
         if (!value_exchangeRequestId && !value_exchangeRequestHash) {
@@ -210,7 +218,7 @@ const OrderDataTest = (props) => {
         } else if (verify_contact) props.setStep(3)
         else { props.setStep(2) }
     }
-
+    console.log(props.showCrypto)
     return (
         <>
         <div className={styles.orderData}>
@@ -230,14 +238,24 @@ const OrderDataTest = (props) => {
                         currency={selectedYouGive}
                         selectedGive={(curr) => {
                             setSelectedYouGive(curr);
-                            props.setCurrencyGive(curr)
+                            props.setCurrencyGive(curr);
+                            axios.get(`https://usaapi.indacoin.io/Currencies/fiat/${curr}/pairs`)
+                                .then(res => {
+                                    props.setNeedCrypto(res.data)
+                                    var result = props.crypto.filter(function (el) {
+                                return res.data.indexOf(el.symbol) >= 0; 
+                              });
+                              props.setShowCrypto(result)
+                            })
+                             
+                            
                         }}
                         amount={amountGive}
                         setAmountGive={(value) => {
                             setAmountGive(value)
                             props.setValueSelected(value)
                         }}
-                        items={props.currencyes.fiat.map((curr) => ({ id: curr.id, name: curr.shortName }))}
+                        items={props.showFiat.map((curr) => ({ id: curr.name, name: curr.symbol }))}
                         error={errorGive}
                         disabled={disabledGive}
                         priceOneCrypto={priceOneCrypto}
@@ -251,9 +269,17 @@ const OrderDataTest = (props) => {
                     currency={selectedYouGet}
                     selectedGive={(curr) => {
                         setSelectedYouGet(curr)
-                        props.setCurrencyGet(curr)}}
+                        props.setCurrencyGet(curr)
+                        axios.get(`https://usaapi.indacoin.io/Currencies/crypto/${curr}/pairs`)
+                                .then(res => {
+                                    var result = props.fiat.filter(function (el) {
+                                return res.data.indexOf(el.symbol) >= 0; 
+                              });
+                              props.setShowFiat(result)
+                            })  
+                    }}
                     amount={amountGet}
-                    items={props.currencyes.crypto.map((curr) => ({ id: curr.id, name: curr.shortName }))}
+                    items={props.showCrypto.map((curr) => ({ id: curr.name, name: curr.symbol }))}
                     disabled={disabledGet}
                     loader={loadingGet}
                 />
@@ -302,7 +328,7 @@ const OrderDataTest = (props) => {
                 selectedYouGet: selectedYouGet,
                 amountGet: amountGet
             })
-            }} loading={props.loading} disabled={false} className={'button'} style={{ width: "423px", margin: "0 auto" }}>
+            }} loading={props.loading} disabled={amountGive < 10} className={'button'} style={{ width: "423px", margin: "0 auto" }}>
             Buy Crypto Now
         </Button>
         {/*<img src={pci} alt="PCI" className={styles.pci} />
