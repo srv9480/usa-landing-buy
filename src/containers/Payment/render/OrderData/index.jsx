@@ -181,66 +181,67 @@ const OrderData = (props) => {
     }
 
     function createRequest() {
-        const {
-            value_exchangeRequestId,
-            value_exchangeRequestHash,
-            verify_contact
-        } = props.getInstanceState
-        const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
-        const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
-        const network = youGet.networks.find((network) => network.shortName === activeNetwork)
-        if (!value_exchangeRequestId && !value_exchangeRequestHash) {
-            const currencyInId = youGive.id;
-            const currencyOutId = youGet.id;
-            const amountOut = amountGet;
-            const amountIn = Number(amountGive);
-            const cryptoAddress = addressWallet;
-            const networkId = network.id;
-            const partnerName = partner;
-            const exchangeRequestUserAgentInfo = {
-                windowInnerWidth: window.innerWidth,
-                windowInnerHeight: window.innerHeight,
-                browserScreenColorDepth: window.screen.colorDepth,
-                browserJavaEnabled: true,
-                browserTimeZone: 0,
-                browserScreenWidth: window.screen.width,
-                browserScreenHeight: window.screen.height
-            };
-            const params = { currencyInId, currencyOutId, amountIn, amountOut, cryptoAddress, networkId, partnerName, exchangeRequestUserAgentInfo };
-            setLoading(true)
-            setDisableButton(true)
-            requests.Exchange(params).then(response => {
-                setLoading(false)
-                setDisableButton(false)
-                if (response?.exchangeRequestId && response.hash && response.tradeUserId) {
-                    props.action_getInstanceState({
-                        value_exchangeRequestId: response.exchangeRequestId,
-                        value_exchangeRequestHash: response.hash,
-                        value_tradeUserId: response.tradeUserId,
-                        selected_youGive: selectedYouGive,
-                        selected_youGet: selectedYouGet,
-                        value_youGive: amountGive,
-                        value_youGet: amountGet,
-                        value_network: activeNetwork,
-                        value_destinationAddress: addressWallet
+        // const {
+        //     value_exchangeRequestId,
+        //     value_exchangeRequestHash,
+        //     verify_contact
+        // } = props.getInstanceState
+        // const youGive = props.currencyes.fiat.find((curr) => curr.shortName === selectedYouGive)
+        // const youGet = props.currencyes.crypto.find((curr) => curr.shortName === selectedYouGet)
+        // const network = youGet.networks.find((network) => network.shortName === activeNetwork)
+        // if (!value_exchangeRequestId && !value_exchangeRequestHash) {
+        //     const currencyInId = youGive.id;
+        //     const currencyOutId = youGet.id;
+        //     const amountOut = amountGet;
+        //     const amountIn = Number(amountGive);
+        //     const cryptoAddress = addressWallet;
+        //     const networkId = network.id;
+        //     const partnerName = partner;
+        //     const exchangeRequestUserAgentInfo = {
+        //         windowInnerWidth: window.innerWidth,
+        //         windowInnerHeight: window.innerHeight,
+        //         browserScreenColorDepth: window.screen.colorDepth,
+        //         browserJavaEnabled: true,
+        //         browserTimeZone: 0,
+        //         browserScreenWidth: window.screen.width,
+        //         browserScreenHeight: window.screen.height
+        //     };
+        //     const params = { currencyInId, currencyOutId, amountIn, amountOut, cryptoAddress, networkId, partnerName, exchangeRequestUserAgentInfo };
+        //     setLoading(true)
+        //     setDisableButton(true)
+        //     requests.Exchange(params).then(response => {
+        //         setLoading(false)
+        //         setDisableButton(false)
+        //         if (response?.exchangeRequestId && response.hash && response.tradeUserId) {
+        //             props.action_getInstanceState({
+        //                 value_exchangeRequestId: response.exchangeRequestId,
+        //                 value_exchangeRequestHash: response.hash,
+        //                 value_tradeUserId: response.tradeUserId,
+        //                 selected_youGive: selectedYouGive,
+        //                 selected_youGet: selectedYouGet,
+        //                 value_youGive: amountGive,
+        //                 value_youGet: amountGet,
+        //                 value_network: activeNetwork,
+        //                 value_destinationAddress: addressWallet
 
-                    });
-                    props.setStep(2)
-                } else {
-                    setError('Internal server Error. Please contact technical support')
-                }
-            })
-            props.setFormData((prevState) => ({
-                ...prevState,
-                selectedYouGive: selectedYouGive,
-                selectedYouGet: selectedYouGet,
-                amountGive: amountGive || props.valueSelected,
-                amountGet: amountGet,
-                activeNetwork: activeNetwork,
-                addressWallet: addressWallet
-              }))
-        } else if (verify_contact) props.setStep(3)
-        else { props.setStep(2) 
+        //             });
+        //             props.setStep(2)
+        //         } else {
+        //             setError('Internal server Error. Please contact technical support')
+        //         }
+        //     })
+        //     props.setFormData((prevState) => ({
+        //         ...prevState,
+        //         selectedYouGive: selectedYouGive,
+        //         selectedYouGet: selectedYouGet,
+        //         amountGive: amountGive || props.valueSelected,
+        //         amountGet: amountGet,
+        //         activeNetwork: activeNetwork,
+        //         addressWallet: addressWallet
+        //       }))
+        // } else if (verify_contact) props.setStep(3)
+        // else { 
+            props.setStep(2) 
             props.setFormData((prevState) => ({
             ...prevState,
             selectedYouGive: selectedYouGive,
@@ -249,7 +250,7 @@ const OrderData = (props) => {
             amountGet: amountGet,
             activeNetwork: activeNetwork,
             addressWallet: addressWallet
-          }))}
+          }))
     }
 
     console.log(typeof(onePrice))
